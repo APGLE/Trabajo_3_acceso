@@ -1,8 +1,8 @@
-package modelos;
+package interfaces;
 
 import javax.swing.JFrame;
 
-public class Interfaz_Registrar_Objeto_Venta extends JFrame {
+public class Interfaz_Registrar_Objetos extends JFrame {
 
 	/**
 	 * 
