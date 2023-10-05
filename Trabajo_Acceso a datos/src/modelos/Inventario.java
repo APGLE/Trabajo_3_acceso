@@ -4,82 +4,95 @@ package modelos;
 
 public class Inventario  {
 	
-	private String idProd;
-	private String nombreProd;
-	private String descripcionProd;
-	private int precioProd;
-	private int categoriaProd;
-	private int cantidadStock;
+	private String id;
+	private String nombre;
+	private String descripcion;
+	private int precio;
+	private int categoria;
+	private String proveedor;
+	private int cantidad;
 	 
-	public Inventario(String idProd, String nombreProd, String descripcionProd, int precioProd, int categoriaProd,
+	public Inventario(String id, String nombre, String descripcion, int precio, int categoria, String proveedor,
 			int cantidadStock) {
 		super();
-		this.idProd = idProd;
-		this.nombreProd = nombreProd;
-		this.descripcionProd = descripcionProd;
-		this.precioProd = precioProd;
-		this.categoriaProd = categoriaProd;
-		this.cantidadStock = cantidadStock;
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.categoria = categoria;
+		this.proveedor = proveedor;
+		this.cantidad = cantidadStock;
 	}
 	
-	prublic Inventario() {
+	public Inventario() {
 		
 	}
 
+	
+	
+	public String getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
+
 	public String getIdProd() {
-		return idProd;
+		return id;
 	}
 
 	public void setIdProd(String idProd) {
-		this.idProd = idProd;
+		this.id = idProd;
 	}
 
 	public String getNombreProd() {
-		return nombreProd;
+		return nombre;
 	}
 
 	public void setNombreProd(String nombreProd) {
-		this.nombreProd = nombreProd;
+		this.nombre = nombreProd;
 	}
 
 	public String getDescripcionProd() {
-		return descripcionProd;
+		return descripcion;
 	}
 
 	public void setDescripcionProd(String descripcionProd) {
-		this.descripcionProd = descripcionProd;
+		this.descripcion = descripcionProd;
 	}
 
 	public int getPrecioProd() {
-		return precioProd;
+		return precio;
 	}
 
 	public void setPrecioProd(int precioProd) {
-		this.precioProd = precioProd;
+		this.precio = precioProd;
 	}
 
 	public int getCategoriaProd() {
-		return categoriaProd;
+		return categoria;
 	}
 
 	public void setCategoriaProd(int categoriaProd) {
-		this.categoriaProd = categoriaProd;
+		this.categoria = categoriaProd;
 	}
 
 	public int getCantidadStock() {
-		return cantidadStock;
+		return cantidad;
 	}
 
 	public void setCantidadStock(int cantidadStock) {
-		this.cantidadStock = cantidadStock;
+		this.cantidad = cantidadStock;
 	}
 
 	@Override
 	public String toString() {
-		return "Inventario [idProd=" + idProd + ", nombreProd=" + nombreProd + ", descripcionProd=" + descripcionProd
-				+ ", precioProd=" + precioProd + ", categoriaProd=" + categoriaProd + ", cantidadStock=" + cantidadStock
-				+ "]";
+		return "Inventario [idProd=" + id + ", nombreProd=" + nombre + ", descripcionProd=" + descripcion
+				+ ", precioProd=" + precio + ", categoriaProd=" + categoria + ", proveedor=" + proveedor
+				+ ", cantidadStock=" + cantidad + "]";
 	}
+
 	
 	
 	

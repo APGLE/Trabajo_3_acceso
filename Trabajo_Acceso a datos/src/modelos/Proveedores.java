@@ -2,18 +2,18 @@ package modelos;
 
 public class Proveedores {
 
-	private String idProveedor;
-	private String nombreProveedor;
-	private String direccionProveedor;
-	private int telefonoProveedor;
+	private String id;
+	private String nombre;
+	private String direccion;
+	private int telefono;
 	
 	
-	public Proveedores(String idProveedor, String nombreProveedor, String direccionProveedor, int telefonoProveedor) {
+	public Proveedores(String id, String nombre, String direccion, int telefono) {
 		super();
-		this.idProveedor = idProveedor;
-		this.nombreProveedor = nombreProveedor;
-		this.direccionProveedor = direccionProveedor;
-		this.telefonoProveedor = telefonoProveedor;
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.telefono = telefono;
 	}
 	
 	public Proveedores () {
@@ -21,41 +21,41 @@ public class Proveedores {
 	}
 
 	public String getIdProveedor() {
-		return idProveedor;
+		return id;
 	}
 
 	public void setIdProveedor(String idProveedor) {
-		this.idProveedor = idProveedor;
+		this.id = idProveedor;
 	}
 
 	public String getNombreProveedor() {
-		return nombreProveedor;
+		return nombre;
 	}
 
 	public void setNombreProveedor(String nombreProveedor) {
-		this.nombreProveedor = nombreProveedor;
+		this.nombre = nombreProveedor;
 	}
 
 	public String getDireccionProveedor() {
-		return direccionProveedor;
+		return direccion;
 	}
 
 	public void setDireccionProveedor(String direccionProveedor) {
-		this.direccionProveedor = direccionProveedor;
+		this.direccion = direccionProveedor;
 	}
 
 	public int getTelefonoProveedor() {
-		return telefonoProveedor;
+		return telefono;
 	}
 
 	public void setTelefonoProveedor(int telefonoProveedor) {
-		this.telefonoProveedor = telefonoProveedor;
+		this.telefono = telefonoProveedor;
 	}
 
 	@Override
 	public String toString() {
-		return "Proveedores [idProveedor=" + idProveedor + ", nombreProveedor=" + nombreProveedor
-				+ ", direccionProveedor=" + direccionProveedor + ", telefonoProveedor=" + telefonoProveedor + "]";
+		return "Proveedores [idProveedor=" + id + ", nombreProveedor=" + nombre
+				+ ", direccionProveedor=" + direccion + ", telefonoProveedor=" + telefono + "]";
 	}
 	
 	

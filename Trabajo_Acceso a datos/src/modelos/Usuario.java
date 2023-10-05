@@ -3,13 +3,13 @@ package modelos;
 public class Usuario {
 	
 	private String id;
-	private String NombreUsuario;
+	private String usuario;
 	private String password;
 	
-	public Usuario(String id, String nombreUsuario, String password) {
+	public Usuario(String id, String usuario, String password) {
 		super();
 		this.id = id;
-		NombreUsuario = nombreUsuario;
+		this.usuario = usuario;
 		this.password = password;
 	}
 	
@@ -26,11 +26,11 @@ public class Usuario {
 	}
 
 	public String getNombreUsuario() {
-		return NombreUsuario;
+		return usuario;
 	}
 
 	public void setNombreUsuario(String nombreUsuario) {
-		NombreUsuario = nombreUsuario;
+		usuario = nombreUsuario;
 	}
 
 	public String getPassword() {
@@ -43,7 +43,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", NombreUsuario=" + NombreUsuario + ", password=" + password + "]";
+		return "Usuario [id=" + id + ", NombreUsuario=" + usuario + ", password=" + password + "]";
 	}
 	
 	

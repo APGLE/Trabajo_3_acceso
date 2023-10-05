@@ -2,23 +2,23 @@ package modelos;
 
 public class Productos {
 	
-	private String idProd;
-	private String nombreProd;
-	private String imgProd;
-	private String descripcionProd;
-	private String CategoriaProd;
-	private float precioUnd;
+	private String id;
+	private String nombre;
+	private String imagen;
+	private String descripcion;
+	private String categoria;
+	private float precio;
 	
 	
-	public Productos(String idProd, String nombreProd, String imgProd, String descripcionProd, String categoriaProd,
+	public Productos(String id, String nombre, String imagen, String descripcion, String categoria,
 			float precioUnd) {
 		super();
-		this.idProd = idProd;
-		this.nombreProd = nombreProd;
-		this.imgProd = imgProd;
-		this.descripcionProd = descripcionProd;
-		CategoriaProd = categoriaProd;
-		this.precioUnd = precioUnd;
+		this.id = id;
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.descripcion = descripcion;
+		this.categoria = categoria;
+		this.precio = precioUnd;
 	}
 	
 	public Productos () {
@@ -26,58 +26,58 @@ public class Productos {
 	}
 
 	public String getIdProd() {
-		return idProd;
+		return id;
 	}
 
 	public void setIdProd(String idProd) {
-		this.idProd = idProd;
+		this.id = idProd;
 	}
 
 	public String getNombreProd() {
-		return nombreProd;
+		return nombre;
 	}
 
 	public void setNombreProd(String nombreProd) {
-		this.nombreProd = nombreProd;
+		this.nombre = nombreProd;
 	}
 
 	public String getImgProd() {
-		return imgProd;
+		return imagen;
 	}
 
 	public void setImgProd(String imgProd) {
-		this.imgProd = imgProd;
+		this.imagen = imgProd;
 	}
 
 	public String getDescripcionProd() {
-		return descripcionProd;
+		return descripcion;
 	}
 
 	public void setDescripcionProd(String descripcionProd) {
-		this.descripcionProd = descripcionProd;
+		this.descripcion = descripcionProd;
 	}
 
 	public String getCategoriaProd() {
-		return CategoriaProd;
+		return categoria;
 	}
 
 	public void setCategoriaProd(String categoriaProd) {
-		CategoriaProd = categoriaProd;
+		categoria = categoriaProd;
 	}
 
 	public float getPrecioUnd() {
-		return precioUnd;
+		return precio;
 	}
 
 	public void setPrecioUnd(float precioUnd) {
-		this.precioUnd = precioUnd;
+		this.precio = precioUnd;
 	}
 
 	@Override
 	public String toString() {
-		return "Productos [idProd=" + idProd + ", nombreProd=" + nombreProd + ", imgProd=" + imgProd
-				+ ", descripcionProd=" + descripcionProd + ", CategoriaProd=" + CategoriaProd + ", precioUnd="
-				+ precioUnd + "]";
+		return "Productos [idProd=" + id + ", nombreProd=" + nombre + ", imgProd=" + imagen
+				+ ", descripcionProd=" + descripcion + ", CategoriaProd=" + categoria + ", precioUnd="
+				+ precio + "]";
 	}
 	
 	
