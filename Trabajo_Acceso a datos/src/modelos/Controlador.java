@@ -17,7 +17,7 @@ public class Controlador {
 
 	public void registrarProducto(String nombre, String descripcion, float precio_unitario, String categoria, String imagen) {
 
-		Producto document = new Producto(nombre, descripcion, precio_unitario, categoria, imagen);
+		Productos document = new Productos(nombre, descripcion, precio_unitario, categoria, imagen);
 		modelo.createDoc(document);
 		actualizarTabla();
 
@@ -30,20 +30,20 @@ public class Controlador {
 	
 	public void actualizarTabla() {
 		
-		ArrayList<Producto> datos = (ArrayList<Producto>) modelo.readAllDocsAndData();
+		ArrayList<Productos> datos = (ArrayList<Productos>) modelo.readAllDocsAndData();
 		vista.mostrarDatos(datos);
 		
 	}
 
 	public void borrarProducto(String id, String rev) {
 		
-		Producto p = new Producto(id,rev); 
+		Productos p = new Productos(id,rev); 
 		modelo.deleteDoc(p);
 		actualizarTabla();
 		
 	}
 
-	public  Producto recuperarCoche(String id) {
+	public  Productos recuperarCoche(String id) {
 		
 		return modelo.readDoc(id);
 				
