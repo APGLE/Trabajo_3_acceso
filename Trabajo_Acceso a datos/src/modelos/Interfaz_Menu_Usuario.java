@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Interfaz_Menu extends JFrame {
+public class Interfaz_Menu_Usuario extends JFrame {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Interfaz_Menu() {
+	public Interfaz_Menu_Usuario() {
         // Configurar la ventana principal
         setTitle("Mi Aplicación");
         setSize(800, 600);
@@ -34,30 +34,26 @@ public class Interfaz_Menu extends JFrame {
         JButton botonBuscar = new JButton("Buscar");
         botonBuscar.setPreferredSize(new Dimension(80, 30)); // Tamaño del botón de búsqueda
 
-        // Agregar la opción "Iniciar Sesión" en la cabecera
-        JButton botonIniciarSesion = new JButton("Iniciar Sesión");
-        botonIniciarSesion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para abrir la ventana de inicio de sesión
-                abrirVentanaInicioSesion();
-            }
-        });
+        // Obtener el nombre del usuario (simulado)
+        String nombreUsuario = "JohnDoe";
 
-        // Agregar la opción "Registrarse" en la cabecera
-        JButton botonRegistrarse = new JButton("Registrarse");
-        botonRegistrarse.addActionListener(new ActionListener() {
+        // Crear un botón para el nombre del usuario que lleva al perfil
+        JButton botonUsuario = new JButton(nombreUsuario);
+        botonUsuario.setFocusPainted(false); // Evita el resaltado al hacer clic
+        botonUsuario.setBorderPainted(false); // Quita el borde del botón
+        botonUsuario.setContentAreaFilled(false); // Hace que el fondo sea transparente
+        botonUsuario.setForeground(Color.WHITE); // Cambia el color del texto
+        botonUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Lógica para abrir la ventana de registro
-                abrirVentanaRegistro();
+                // Lógica para abrir el perfil del usuario
+                abrirPerfilUsuario(nombreUsuario);
             }
         });
 
         headerPanel.add(campoBusqueda);
         headerPanel.add(botonBuscar);
-        headerPanel.add(botonIniciarSesion);
-        headerPanel.add(botonRegistrarse);
+        headerPanel.add(botonUsuario); // Agregar el botón del usuario en lugar de "Iniciar Sesión" y "Registrarse"
 
         // Agregar la cabecera a la ventana
         contentPanel.add(headerPanel, BorderLayout.NORTH);
@@ -69,23 +65,17 @@ public class Interfaz_Menu extends JFrame {
         setVisible(true);
     }
 
-    private void abrirVentanaInicioSesion() {
-        // Lógica para abrir la ventana de inicio de sesión
-        // Puedes crear una nueva ventana o un diálogo para el inicio de sesión aquí
-        JOptionPane.showMessageDialog(this, "Ventana de Inicio de Sesión");
-    }
-
-    private void abrirVentanaRegistro() {
-        // Lógica para abrir la ventana de registro
-        // Puedes crear una nueva ventana o un diálogo para el registro aquí
-        JOptionPane.showMessageDialog(this, "Ventana de Registro");
+    private void abrirPerfilUsuario(String nombreUsuario) {
+        // Lógica para abrir el perfil del usuario
+        // Puedes crear una nueva ventana o cambiar el contenido de esta ventana
+        JOptionPane.showMessageDialog(this, "Perfil de usuario: " + nombreUsuario);
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Interfaz_Menu();
+                new Interfaz_Menu_Usuario();
             }
         });
     }
