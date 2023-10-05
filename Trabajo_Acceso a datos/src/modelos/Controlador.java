@@ -23,7 +23,7 @@ public class Controlador {
 
 	}
 
-	public void datoIntroducido(Producto document) {
+	public void actualizarProducto(String nombre, String descripcion, float precio_unitario, String categoria, String imagen) {
 		vista.datoIntroducido(document);
 
 	}
