@@ -1,6 +1,6 @@
 package modelos;
 
-public class Proveedores {
+public class Proveedor {
 
 	private String id;
 	private String nombre;
@@ -8,7 +8,7 @@ public class Proveedores {
 	private int telefono;
 	
 	
-	public Proveedores(String id, String nombre, String direccion, int telefono) {
+	public Proveedor(String id, String nombre, String direccion, int telefono) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -16,7 +16,7 @@ public class Proveedores {
 		this.telefono = telefono;
 	}
 	
-	public Proveedores () {
+	public Proveedor () {
 		
 	}
 

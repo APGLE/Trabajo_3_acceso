@@ -1,5 +1,7 @@
 package modelos;
 
+import java.sql.*;
+
 import modelos.Controlador;
 
 public class Modelo {
@@ -9,6 +11,21 @@ public class Modelo {
 		super();
 
 		this.controlador = controlador;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection connection = null;
+			// Database connect
+			// Conectamos con la base de datos
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiendamuebles", "root", "");
+			boolean valid = connection.isValid(50000);
+			System.out.println(valid ? "TEST OK" : "TEST FAIL");
+		} catch (ClassNotFoundException ex) {
+			System.out.println("Error al registrar el driver de MySQL: " + ex);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public String registrarProducto() {
@@ -51,7 +68,7 @@ public class Modelo {
 		return "";
 	}
 
-	public String registrarProveedor() {
+	public String registrarProveedor(Proveedor proveedor) {
 
 		return "";
 	}

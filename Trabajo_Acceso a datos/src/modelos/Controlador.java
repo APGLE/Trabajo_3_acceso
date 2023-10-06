@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Controlador {
 
-	private Vista vista;
+/*	private Vista vista;
 	private Modelo modelo;
 
 	
@@ -60,6 +60,6 @@ public class Controlador {
 		modelo.updateDoc(coche);
 		actualizarTabla();
 		
-	}
+	}*/
 
 }

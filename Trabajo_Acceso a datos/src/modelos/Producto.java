@@ -1,6 +1,6 @@
 package modelos;
 
-public class Productos {
+public class Producto {
 	
 	private String id;
 	private String nombre;
@@ -10,7 +10,7 @@ public class Productos {
 	private float precio;
 	
 	
-	public Productos(String id, String nombre, String imagen, String descripcion, String categoria,
+	public Producto(String id, String nombre, String imagen, String descripcion, String categoria,
 			float precioUnd) {
 		super();
 		this.id = id;
@@ -21,7 +21,7 @@ public class Productos {
 		this.precio = precioUnd;
 	}
 	
-	public Productos () {
+	public Producto () {
 		
 	}
 
