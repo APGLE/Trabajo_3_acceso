@@ -20,43 +20,45 @@ public class Proveedor {
 		
 	}
 
-	public String getIdProveedor() {
+	public String getId() {
 		return id;
 	}
 
-	public void setIdProveedor(String idProveedor) {
+	public void setId(String idProveedor) {
 		this.id = idProveedor;
 	}
 
-	public String getNombreProveedor() {
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombreProveedor(String nombreProveedor) {
-		this.nombre = nombreProveedor;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getDireccionProveedor() {
+	public String getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccionProveedor(String direccionProveedor) {
-		this.direccion = direccionProveedor;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
-	public int getTelefonoProveedor() {
+	public int getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefonoProveedor(int telefonoProveedor) {
-		this.telefono = telefonoProveedor;
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
 	}
 
 	@Override
 	public String toString() {
-		return "Proveedores [idProveedor=" + id + ", nombreProveedor=" + nombre
-				+ ", direccionProveedor=" + direccion + ", telefonoProveedor=" + telefono + "]";
+		return "Proveedor [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono
+				+ "]";
 	}
+
+	
 	
 	
 	

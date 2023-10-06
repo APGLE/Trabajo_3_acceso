@@ -6,6 +6,7 @@ import modelos.Controlador;
 
 public class Modelo {
 	private Controlador controlador;
+	private Connection connection;
 
 	public Modelo(Controlador controlador) {
 		super();
@@ -13,7 +14,7 @@ public class Modelo {
 		this.controlador = controlador;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection connection = null;
+
 			// Database connect
 			// Conectamos con la base de datos
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiendamuebles", "root", "");
@@ -70,6 +71,21 @@ public class Modelo {
 
 	public String registrarProveedor(Proveedor proveedor) {
 
+		String sql = " insert into proveedor (cif, nombre, direccion, telefono)" + " values (?, ?, ?, ?)";
+		PreparedStatement preparedStmt;
+		try {
+			preparedStmt = connection.prepareStatement(sql);
+			preparedStmt.setString(1, proveedor.getId());
+			preparedStmt.setString(2, proveedor.getNombre());
+			preparedStmt.setString(3, proveedor.getDireccion());
+			preparedStmt.setInt(4, proveedor.getTelefono());
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return "";
 	}
 
