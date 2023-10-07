@@ -29,7 +29,24 @@ public class Modelo {
 
 	}
 
-	public String registrarProducto() {
+	public String registrarProducto(Producto producto) {
+
+		String sql = " insert into producto (id, nombre, imagen, descripcion, categoria, precio)"
+				+ " values (?, ?, ?, ?,?,?)";
+		PreparedStatement preparedStmt;
+		try {
+			preparedStmt = connection.prepareStatement(sql);
+			preparedStmt.setString(1, producto.getId());
+			preparedStmt.setString(2, producto.getNombre());
+			preparedStmt.setString(3, producto.getImagen());
+			preparedStmt.setString(4, producto.getDescripcion());
+			preparedStmt.setString(5, producto.getCategoria());
+			preparedStmt.setDouble(6, producto.getPrecio());
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return "";
 	}
@@ -75,17 +92,16 @@ public class Modelo {
 		PreparedStatement preparedStmt;
 		try {
 			preparedStmt = connection.prepareStatement(sql);
-			preparedStmt.setString(1, proveedor.getId());
+			preparedStmt.setString(1, proveedor.getCif());
 			preparedStmt.setString(2, proveedor.getNombre());
 			preparedStmt.setString(3, proveedor.getDireccion());
-			preparedStmt.setInt(4, proveedor.getTelefono());
+			preparedStmt.setString(4, proveedor.getTelefono());
 			preparedStmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return "";
 	}
 
@@ -134,7 +150,20 @@ public class Modelo {
 		return "";
 	}
 
-	public String registrarUsuario() {
+	public String registrarUsuario(Usuario usuario) {
+
+		String sql = " insert into usuario (usuario, password, rol)" + " values (?, ?, ?)";
+		PreparedStatement preparedStmt;
+		try {
+			preparedStmt = connection.prepareStatement(sql);
+			preparedStmt.setString(1, usuario.getUsuario());
+			preparedStmt.setString(2, usuario.getPassword());
+			preparedStmt.setString(3, usuario.getRol());
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return "";
 	}

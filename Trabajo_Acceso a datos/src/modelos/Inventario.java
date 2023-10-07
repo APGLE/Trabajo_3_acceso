@@ -4,97 +4,96 @@ package modelos;
 
 public class Inventario  {
 	
+	private String transaccion;
+	private long  fechaHora;
 	private String id;
-	private String nombre;
-	private String descripcion;
-	private int precio;
-	private int categoria;
-	private String proveedor;
-	private int cantidad;
-	 
-	public Inventario(String id, String nombre, String descripcion, int precio, int categoria, String proveedor,
-			int cantidadStock) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.precio = precio;
-		this.categoria = categoria;
-		this.proveedor = proveedor;
-		this.cantidad = cantidadStock;
-	}
+	private String cif;
+	private char operacion;
+	private String cantidad;
+	private int saldo;
+	
+	public static final char VENTA = 'v';
+	public static final char COMPRA = 'c';
+	public static final char INVENTARIO = 'i';
 	
 	public Inventario() {
 		
 	}
-
 	
-	
-	public String getProveedor() {
-		return proveedor;
+	public Inventario(String transaccion, long fechaHora, String id, String cif, char operacion, String cantidad,
+			int saldo) {
+		super();
+		this.transaccion = transaccion;
+		this.fechaHora = fechaHora;
+		this.id = id;
+		this.cif = cif;
+		this.operacion = operacion;
+		this.cantidad = cantidad;
+		this.saldo = saldo;
 	}
 
-	public void setProveedor(String proveedor) {
-		this.proveedor = proveedor;
+	public String getTransaccion() {
+		return transaccion;
 	}
 
-	public String getIdProd() {
+	public void setTransaccion(String transaccion) {
+		this.transaccion = transaccion;
+	}
+
+	public long getFechaHora() {
+		return fechaHora;
+	}
+
+	public void setFechaHora(long fechaHora) {
+		this.fechaHora = fechaHora;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setIdProd(String idProd) {
-		this.id = idProd;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getNombreProd() {
-		return nombre;
+	public String getCif() {
+		return cif;
 	}
 
-	public void setNombreProd(String nombreProd) {
-		this.nombre = nombreProd;
+	public void setCif(String cif) {
+		this.cif = cif;
 	}
 
-	public String getDescripcionProd() {
-		return descripcion;
+	public char getOperacion() {
+		return operacion;
 	}
 
-	public void setDescripcionProd(String descripcionProd) {
-		this.descripcion = descripcionProd;
+	public void setOperacion(char operacion) {
+		this.operacion = operacion;
 	}
 
-	public int getPrecioProd() {
-		return precio;
-	}
-
-	public void setPrecioProd(int precioProd) {
-		this.precio = precioProd;
-	}
-
-	public int getCategoriaProd() {
-		return categoria;
-	}
-
-	public void setCategoriaProd(int categoriaProd) {
-		this.categoria = categoriaProd;
-	}
-
-	public int getCantidadStock() {
+	public String getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidadStock(int cantidadStock) {
-		this.cantidad = cantidadStock;
+	public void setCantidad(String cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public int getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(int saldo) {
+		this.saldo = saldo;
 	}
 
 	@Override
 	public String toString() {
-		return "Inventario [idProd=" + id + ", nombreProd=" + nombre + ", descripcionProd=" + descripcion
-				+ ", precioProd=" + precio + ", categoriaProd=" + categoria + ", proveedor=" + proveedor
-				+ ", cantidadStock=" + cantidad + "]";
+		return "Inventario [transaccion=" + transaccion + ", fechaHora=" + fechaHora + ", id=" + id + ", cif=" + cif
+				+ ", operacion=" + operacion + ", cantidad=" + cantidad + ", saldo=" + saldo + "]";
 	}
-
+	 
 	
 	
-	
-
 }

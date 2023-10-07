@@ -2,15 +2,15 @@ package modelos;
 
 public class Proveedor {
 
-	private String id;
+	private String cif;
 	private String nombre;
 	private String direccion;
-	private int telefono;
+	private String telefono;
 	
 	
-	public Proveedor(String id, String nombre, String direccion, int telefono) {
+	public Proveedor(String cif, String nombre, String direccion, String telefono) {
 		super();
-		this.id = id;
+		this.cif = cif;
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.telefono = telefono;
@@ -19,13 +19,14 @@ public class Proveedor {
 	public Proveedor () {
 		
 	}
+	
 
-	public String getId() {
-		return id;
+	public String getCif() {
+		return cif;
 	}
 
-	public void setId(String idProveedor) {
-		this.id = idProveedor;
+	public void setCif(String cif) {
+		this.cif = cif;
 	}
 
 	public String getNombre() {
@@ -44,17 +45,17 @@ public class Proveedor {
 		this.direccion = direccion;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
 	@Override
 	public String toString() {
-		return "Proveedor [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono
+		return "Proveedor [id=" + cif + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono
 				+ "]";
 	}
 
