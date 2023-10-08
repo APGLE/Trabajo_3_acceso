@@ -10,72 +10,47 @@ public class Interfaz_Actualizar_Proveedores extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JTextField nombreProveedorTextField;
+    private JTextField direccionProveedorTextField;
+    private JButton btnActualizarProveedor;
 
-	public Interfaz_Actualizar_Proveedores() {
-        // Configurar la ventana de registro de proveedores
-        setTitle("Registro de Proveedor");
-        setSize(400, 300);
+    public Interfaz_Actualizar_Proveedores() {
+        // Configurar la ventana de actualización de proveedor
+        setTitle("Actualizar Proveedor");
+        setSize(400, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Crear un panel para el contenido
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new BorderLayout());
-
-        // Crear un panel para el formulario de registro de proveedores
-        JPanel formularioPanel = new JPanel();
+        contentPanel.setLayout(new GridLayout(3, 2, 10, 10)); // 3 filas, 2 columnas
 
         // Campos de entrada
-        JLabel lblNombre = new JLabel("Nombre:");
-        lblNombre.setBounds(10, 27, 40, 26);
-        JTextField txtNombre = new JTextField();
-        txtNombre.setBounds(60, 28, 188, 26);
+        JLabel lblNombreProveedor = new JLabel("Nombre del Proveedor:");
+        nombreProveedorTextField = new JTextField();
 
-        JLabel lblDireccion = new JLabel("Dirección:");
-        lblDireccion.setBounds(10, 76, 46, 26);
-        JTextField txtDireccion = new JTextField();
-        txtDireccion.setBounds(66, 77, 188, 26);
+        JLabel lblDireccionProveedor = new JLabel("Nueva Dirección:");
+        direccionProveedorTextField = new JTextField();
 
-        JLabel lblTelefono = new JLabel("Número de Teléfono:");
-        lblTelefono.setBounds(10, 139, 98, 26);
-        JTextField txtTelefono = new JTextField();
-        txtTelefono.setBounds(118, 140, 188, 26);
-
-        JLabel lblOtraInformacion = new JLabel("Otra Información:");
-        lblOtraInformacion.setBounds(10, 206, 87, 26);
-        JTextArea txtOtraInformacion = new JTextArea();
-        JScrollPane otraInformacionScrollPane = new JScrollPane(txtOtraInformacion);
-        otraInformacionScrollPane.setBounds(107, 212, 188, 26);
-        formularioPanel.setLayout(null);
-
-        formularioPanel.add(lblNombre);
-        formularioPanel.add(txtNombre);
-        formularioPanel.add(lblDireccion);
-        formularioPanel.add(txtDireccion);
-        formularioPanel.add(lblTelefono);
-        formularioPanel.add(txtTelefono);
-        formularioPanel.add(lblOtraInformacion);
-        formularioPanel.add(otraInformacionScrollPane);
-
-        // Botón para registrar al proveedor
-        JButton btnRegistrar = new JButton("Registrar Proveedor");
-        btnRegistrar.addActionListener(new ActionListener() {
+        btnActualizarProveedor = new JButton("Actualizar Proveedor");
+        btnActualizarProveedor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obtener los valores del proveedor
-                String nombre = txtNombre.getText();
-                String direccion = txtDireccion.getText();
-                String telefono = txtTelefono.getText();
-                String otraInformacion = txtOtraInformacion.getText();
+                // Obtener los nuevos valores del proveedor
+                String nuevoNombreProveedor = nombreProveedorTextField.getText();
+                String nuevaDireccionProveedor = direccionProveedorTextField.getText();
 
-                // Lógica para registrar al proveedor en tu sistema
-                registrarProveedor(nombre, direccion, telefono, otraInformacion);
+                // Lógica para actualizar el proveedor (debes implementar tu lógica real aquí)
+                actualizarProveedor(nuevoNombreProveedor, nuevaDireccionProveedor);
             }
         });
 
         // Agregar elementos al panel de contenido
-        contentPanel.add(formularioPanel, BorderLayout.CENTER);
-        contentPanel.add(btnRegistrar, BorderLayout.SOUTH);
+        contentPanel.add(lblNombreProveedor);
+        contentPanel.add(nombreProveedorTextField);
+        contentPanel.add(lblDireccionProveedor);
+        contentPanel.add(direccionProveedorTextField);
+        contentPanel.add(btnActualizarProveedor);
 
         // Agregar el panel de contenido a la ventana
         getContentPane().add(contentPanel);
@@ -84,11 +59,11 @@ public class Interfaz_Actualizar_Proveedores extends JFrame {
         setVisible(true);
     }
 
-    private void registrarProveedor(String nombre, String direccion, String telefono, String otraInformacion) {
-        // Lógica para registrar al proveedor en tu sistema
-        // Debes implementar la lógica real para almacenar los datos del proveedor aquí
-        JOptionPane.showMessageDialog(this, "Proveedor registrado:\nNombre: " + nombre + "\nDirección: " + direccion
-                + "\nNúmero de Teléfono: " + telefono + "\nOtra Información: " + otraInformacion);
+    private void actualizarProveedor(String nuevoNombreProveedor, String nuevaDireccionProveedor) {
+        // Lógica para actualizar el proveedor (debes implementar tu lógica real aquí)
+        // Por ejemplo, podrías actualizar los datos en tu base de datos o sistema de proveedores.
+        JOptionPane.showMessageDialog(this, "Proveedor actualizado:\nNombre: " + nuevoNombreProveedor
+                + "\nNueva Dirección: " + nuevaDireccionProveedor);
     }
 
     public static void main(String[] args) {
