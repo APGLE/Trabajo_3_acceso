@@ -1,5 +1,5 @@
-package interfaces;
+//package interfaces;
 
-public class Interfaz_contabilidad {
+//public class Interfaz_contabilidad {
 
-}
+//}

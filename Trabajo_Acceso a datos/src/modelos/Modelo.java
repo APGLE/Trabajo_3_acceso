@@ -51,12 +51,48 @@ public class Modelo {
 		return "";
 	}
 
-	public String actualizarProducto() {
+	public String actualizarProducto(Producto producto) {
+
+		String sql = " update producto set (nombre = ?, imagen = ?, descripcion = ?, categoria = ?, precio = ?) where id = ?";
+
+		try {
+			PreparedStatement preparedStmt = connection.prepareStatement(sql);
+
+			preparedStmt.setString(1, producto.getNombre());
+			preparedStmt.setString(2, producto.getImagen());
+			preparedStmt.setString(3, producto.getDescripcion());
+			preparedStmt.setString(4, producto.getCategoria());
+			preparedStmt.setDouble(5, producto.getPrecio());
+			preparedStmt.setString(6, producto.getId());
+			
+
+			int filasActualizadas = preparedStmt.executeUpdate();
+
+			if (filasActualizadas > 0) {
+				System.out.println("Producto actualizado correctamente.");
+			} else {
+				System.out.println("No se pudo actualizar el producto.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		return "";
 	}
 
-	public String eliminarProducto() {
+	public String eliminarProducto(Producto producto) {
+
+		String sql = " delete from producto where id = ?";
+		try {
+			PreparedStatement preparedStmt = connection.prepareStatement(sql);
+
+			preparedStmt.setString(1, producto.getId());
+
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return "";
 	}
@@ -72,6 +108,8 @@ public class Modelo {
 	}
 
 	public String eliminarImg() {
+		
+		
 
 		return "";
 	}
@@ -105,12 +143,48 @@ public class Modelo {
 		return "";
 	}
 
-	public String actualizarProveedor() {
+	public String actualizarProveedor(Proveedor proveedor) {
+
+		String sql = " update producto set (nombre = ?, direccion= ?, telefono= ?) where cif = ?";
+
+		try {
+			PreparedStatement preparedStmt = connection.prepareStatement(sql);
+
+			preparedStmt.setString(1, proveedor.getNombre());
+			preparedStmt.setString(2, proveedor.getDireccion());
+			preparedStmt.setString(3, proveedor.getTelefono());
+			preparedStmt.setString(4, proveedor.getCif());
+			preparedStmt.execute();
+
+			int filasActualizadas = preparedStmt.executeUpdate();
+
+			if (filasActualizadas > 0) {
+				System.out.println("Proveedor actualizado correctamente.");
+			} else {
+				System.out.println("No se pudo actualizar el proveedor.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		return "";
 	}
 
-	public String eliminarProveedor() {
+	public String eliminarProveedor(Proveedor proveedor) {
+
+		String sql = " delete from proveedor where cif = ?";
+		
+		
+		try {
+			PreparedStatement preparedStmt = connection.prepareStatement(sql);
+
+			preparedStmt.setString(1, proveedor.getCif());
+
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 
 		return "";
 	}
