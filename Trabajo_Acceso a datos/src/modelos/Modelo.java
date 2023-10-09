@@ -1,6 +1,7 @@
 package modelos;
 
 import java.sql.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -251,7 +252,30 @@ public class Modelo {
 		return proveedores;
 	}
 
-	public String recibirProductoProveedor() {
+	/**
+	 * Añado los datos recibidos de proveedor en la tabla Inventario
+	 * @return
+	 */
+	public String recibirProductoProveedor(Inventario inventario) {
+		
+		String sql = " insert into inventario (transaccion, fechahora, id, cif, operacion, cantidad, saldo)" +
+				 " values (?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement preparedStmt;
+		try {
+			preparedStmt = connection.prepareStatement(sql);
+			preparedStmt.setString(1, Long.toString(Instant.now().getEpochSecond()));
+			preparedStmt.setString(2, Long.toString(Instant.now().getEpochSecond()));
+			preparedStmt.setString(3, inventario.getId());
+			preparedStmt.setString(4, inventario.getCif());
+			preparedStmt.setString(5, Inventario.COMPRA + "");
+			preparedStmt.setInt(6, inventario.getCantidad());
+			preparedStmt.setInt(6, inventario.getSaldo());
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 		return "";
 	}
