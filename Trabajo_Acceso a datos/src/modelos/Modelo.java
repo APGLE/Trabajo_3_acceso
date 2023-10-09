@@ -1,6 +1,8 @@
 package modelos;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import modelos.Controlador;
 
@@ -64,7 +66,6 @@ public class Modelo {
 			preparedStmt.setString(4, producto.getCategoria());
 			preparedStmt.setDouble(5, producto.getPrecio());
 			preparedStmt.setString(6, producto.getId());
-			
 
 			int filasActualizadas = preparedStmt.executeUpdate();
 
@@ -108,8 +109,6 @@ public class Modelo {
 	}
 
 	public String eliminarImg() {
-		
-		
 
 		return "";
 	}
@@ -173,8 +172,7 @@ public class Modelo {
 	public String eliminarProveedor(Proveedor proveedor) {
 
 		String sql = " delete from proveedor where cif = ?";
-		
-		
+
 		try {
 			PreparedStatement preparedStmt = connection.prepareStatement(sql);
 
@@ -182,7 +180,7 @@ public class Modelo {
 
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 
@@ -214,10 +212,40 @@ public class Modelo {
 		return "";
 	}
 
-	public String buscarProducto() {
+	public List<Producto> buscarProducto(Producto producto) {
+	    ArrayList<Producto> productos = new ArrayList<>(); 
 
-		return "";
+	    String sql = "SELECT * FROM producto WHERE id = ?";
+
+	    try {
+	        PreparedStatement preparedStmt = connection.prepareStatement(sql);
+	        preparedStmt.setString(1, producto.getId());
+
+	        ResultSet rs = preparedStmt.executeQuery();
+
+	        while (rs.next()) {
+	            
+	            Producto foundProducto = new Producto();
+	            foundProducto.setId(rs.getString("id"));
+	            foundProducto.setNombre(rs.getString("nombre"));
+	            foundProducto.setImagen(rs.getString("imagen"));
+	            foundProducto.setDescripcion(rs.getString("descripcion"));
+	            foundProducto.setCategoria(rs.getString("categoria"));
+	            foundProducto.setPrecio(rs.getDouble("precio"));
+	            
+	            productos.add(foundProducto);
+	        }
+
+	        
+	        rs.close();
+	        preparedStmt.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return productos; 
 	}
+
 
 	public String informesInventario() {
 

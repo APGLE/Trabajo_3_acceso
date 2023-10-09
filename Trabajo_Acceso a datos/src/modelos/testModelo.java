@@ -14,7 +14,7 @@ public class testModelo {
 		
 //		modelo.registrarUsuario(usuario);
 		
-//		Producto producto = new Producto("PR123456","Escritorio nordico","","Mesa blanca escritorio", "Mesas",25.00);
+		Producto producto = new Producto("PR123456","Escritorio nordico","","Mesa blanca escritorio", "Mesas",25.00);
 
 //		modelo.registrarProducto(producto);
 		
@@ -26,7 +26,9 @@ public class testModelo {
 		
 //		modelo.eliminarProducto(producto);
 		
-		modelo.eliminarProveedor(proveedor);
+//		modelo.eliminarProveedor(proveedor);
+		
+		modelo.buscarProducto(producto);
 	}
 	
 	

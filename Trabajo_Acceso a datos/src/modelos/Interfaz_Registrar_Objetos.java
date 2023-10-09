@@ -1,6 +1,6 @@
 package modelos;
 
-package modelos;
+//package modelos;
 
 import javax.swing.*;
 import java.awt.*;
