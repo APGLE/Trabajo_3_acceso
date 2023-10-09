@@ -8,8 +8,8 @@ public class Inventario  {
 	private long  fechaHora;
 	private String id;
 	private String cif;
-	private char operacion;
-	private String cantidad;
+	private String operacion;
+	private int cantidad;
 	private int saldo;
 	
 	public static final char VENTA = 'v';
@@ -20,7 +20,7 @@ public class Inventario  {
 		
 	}
 	
-	public Inventario(String transaccion, long fechaHora, String id, String cif, char operacion, String cantidad,
+	public Inventario(String transaccion, long fechaHora, String id, String cif, String operacion, int cantidad,
 			int saldo) {
 		super();
 		this.transaccion = transaccion;
@@ -64,19 +64,19 @@ public class Inventario  {
 		this.cif = cif;
 	}
 
-	public char getOperacion() {
+	public String getOperacion() {
 		return operacion;
 	}
 
-	public void setOperacion(char operacion) {
+	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
 
-	public String getCantidad() {
+	public int getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(String cantidad) {
+	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
 

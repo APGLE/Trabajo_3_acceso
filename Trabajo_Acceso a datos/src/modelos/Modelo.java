@@ -98,9 +98,42 @@ public class Modelo {
 		return "";
 	}
 
-	public String listarProducto() {
+	/**
+	 * Devolver todos los productos
+	 * 
+	 * @return devuelve una lista de todos los productos
+	 */
+	public List<Producto> listarProductos() {
 
-		return "";
+		ArrayList<Producto> productos = new ArrayList<>();
+
+		String sql = "SELECT * FROM producto";
+
+		try {
+			PreparedStatement preparedStmt = connection.prepareStatement(sql);
+
+			ResultSet rs = preparedStmt.executeQuery();
+
+			while (rs.next()) {
+
+				Producto foundProducto = new Producto();
+				foundProducto.setId(rs.getString("id"));
+				foundProducto.setNombre(rs.getString("nombre"));
+				foundProducto.setImagen(rs.getString("imagen"));
+				foundProducto.setDescripcion(rs.getString("descripcion"));
+				foundProducto.setCategoria(rs.getString("categoria"));
+				foundProducto.setPrecio(rs.getDouble("precio"));
+
+				productos.add(foundProducto);
+			}
+
+			rs.close();
+			preparedStmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return productos;
 	}
 
 	public String insertImg() {
@@ -187,9 +220,35 @@ public class Modelo {
 		return "";
 	}
 
-	public String listarProveedor() {
+	public List<Proveedor> listarProveedores() {
 
-		return "";
+		ArrayList<Proveedor> proveedores = new ArrayList<>();
+
+		String sql = "SELECT * FROM proveedor";
+
+		try {
+			PreparedStatement preparedStmt = connection.prepareStatement(sql);
+
+			ResultSet rs = preparedStmt.executeQuery();
+
+			while (rs.next()) {
+
+				Proveedor foundProveedor = new Proveedor();
+				foundProveedor.setCif(rs.getString("cif"));
+				foundProveedor.setNombre(rs.getString("nombre"));
+				foundProveedor.setDireccion(rs.getString("direccion"));
+				foundProveedor.setTelefono(rs.getString("telefono"));
+				
+				proveedores.add(foundProveedor);
+			}
+
+			rs.close();
+			preparedStmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return proveedores;
 	}
 
 	public String recibirProductoProveedor() {
@@ -202,9 +261,41 @@ public class Modelo {
 		return "";
 	}
 
-	public String listaTransacciones() {
+	/**
+	 * 
+	 * @return
+	 */
+	public List<Inventario> historicoTransacciones(Inventario inventario) {
+		
+		ArrayList<Inventario> inventarios = new ArrayList<>();
 
-		return "";
+		String sql = "SELECT * FROM inventario";
+
+		try {
+			PreparedStatement preparedStmt = connection.prepareStatement(sql);
+
+			ResultSet rs = preparedStmt.executeQuery();
+
+			while (rs.next()) {
+
+				Inventario foundInventario = new Inventario();
+				foundInventario.setTransaccion(rs.getString("Transaccion"));
+				foundInventario.setFechaHora(rs.getLong("fechaHora"));
+				foundInventario.setCif(rs.getString("Cif"));
+				foundInventario.setOperacion(rs.getString("operacion"));
+				foundInventario.setCantidad(rs.getInt("cantidad"));
+				foundInventario.setSaldo(rs.getInt("saldo"));
+				
+				inventarios.add(foundInventario);
+			}
+
+			rs.close();
+			preparedStmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return inventarios;
 	}
 
 	public String actualizarStock() {
@@ -213,39 +304,37 @@ public class Modelo {
 	}
 
 	public List<Producto> buscarProducto(Producto producto) {
-	    ArrayList<Producto> productos = new ArrayList<>(); 
+		ArrayList<Producto> productos = new ArrayList<>();
 
-	    String sql = "SELECT * FROM producto WHERE id = ?";
+		String sql = "SELECT * FROM producto WHERE id = ?";
 
-	    try {
-	        PreparedStatement preparedStmt = connection.prepareStatement(sql);
-	        preparedStmt.setString(1, producto.getId());
+		try {
+			PreparedStatement preparedStmt = connection.prepareStatement(sql);
+			preparedStmt.setString(1, producto.getId());
 
-	        ResultSet rs = preparedStmt.executeQuery();
+			ResultSet rs = preparedStmt.executeQuery();
 
-	        while (rs.next()) {
-	            
-	            Producto foundProducto = new Producto();
-	            foundProducto.setId(rs.getString("id"));
-	            foundProducto.setNombre(rs.getString("nombre"));
-	            foundProducto.setImagen(rs.getString("imagen"));
-	            foundProducto.setDescripcion(rs.getString("descripcion"));
-	            foundProducto.setCategoria(rs.getString("categoria"));
-	            foundProducto.setPrecio(rs.getDouble("precio"));
-	            
-	            productos.add(foundProducto);
-	        }
+			while (rs.next()) {
 
-	        
-	        rs.close();
-	        preparedStmt.close();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    
-	    return productos; 
+				Producto foundProducto = new Producto();
+				foundProducto.setId(rs.getString("id"));
+				foundProducto.setNombre(rs.getString("nombre"));
+				foundProducto.setImagen(rs.getString("imagen"));
+				foundProducto.setDescripcion(rs.getString("descripcion"));
+				foundProducto.setCategoria(rs.getString("categoria"));
+				foundProducto.setPrecio(rs.getDouble("precio"));
+
+				productos.add(foundProducto);
+			}
+
+			rs.close();
+			preparedStmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return productos;
 	}
-
 
 	public String informesInventario() {
 
