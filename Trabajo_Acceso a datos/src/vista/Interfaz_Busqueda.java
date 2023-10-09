@@ -1,8 +1,8 @@
-package modelos;
+package vista;
 
 import javax.swing.JFrame;
 
-public class Interfaz_Registrar_Transacciones extends JFrame {
+public class Interfaz_Busqueda extends JFrame {
 
 	/**
 	 * 

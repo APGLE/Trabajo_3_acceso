@@ -1,19 +1,19 @@
-package modelos;
+package vista;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Interfaz_Eliminar_Usuario extends JFrame {
+public class interfaz_Eliminar_Objeto extends JFrame {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private DefaultListModel<String> listaUsuariosModel;
 
-    public Interfaz_Eliminar_Usuario() {
-        // Configurar la ventana de eliminación de usuarios
+    public interfaz_Eliminar_Objeto() {
+        // Configurar la ventana de eliminación de usuario
         setTitle("Eliminar Usuario");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -29,7 +29,7 @@ public class Interfaz_Eliminar_Usuario extends JFrame {
         JScrollPane listaUsuariosScrollPane = new JScrollPane(listaUsuarios);
 
         // Botón para cargar usuarios de ejemplo
-        JButton btnCargarUsuarios = new JButton("Cargar Usuarios de la base de datos");
+        JButton btnCargarUsuarios = new JButton("Cargar Usuarios de la Base de datos");
         btnCargarUsuarios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,7 +81,7 @@ public class Interfaz_Eliminar_Usuario extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Interfaz_Eliminar_Usuario();
+                new interfaz_Eliminar_Objeto();
             }
         });
     }
