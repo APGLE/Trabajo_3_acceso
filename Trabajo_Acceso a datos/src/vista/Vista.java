@@ -1,4 +1,4 @@
-package modelos;
+package vista;
 
 public class Vista {
 

@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import modelos.Controlador;
+import controlador.Controlador;
 
 public class Modelo {
 	private Controlador controlador;
