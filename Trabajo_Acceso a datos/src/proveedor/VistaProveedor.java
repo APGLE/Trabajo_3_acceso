@@ -1,4 +1,4 @@
-package vista;
+package proveedor;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class VistaProveedores extends JFrame {
+public class VistaProveedor extends JFrame {
     /**
 	 * 
 	 */
@@ -25,20 +25,39 @@ public class VistaProveedores extends JFrame {
     private JButton btnBorrar;
     private JButton btnListar;
     private JButton btnSalir;
+	private ControladorProveedor controladorProveedor;
+	private Object proveedorSeleccionado;
+	private Window formulario;
 
-    public VistaProveedores() {
+    public VistaProveedor() {
         // Configurar la ventana de actualización de proveedor
-        setTitle("Proveedor");
+    }    
+            
+          
+      
+                 
+    
+   
+    public VistaProveedor(ControladorProveedor controlador) {
+
+		this.controladorProveedor = controlador;
+		datos = new JFrame();
+		datos.setBounds(100, 100, 570, 400);
+		datos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		datos.setLocationRelativeTo(null);
+		datos.getContentPane().setLayout(null);
+		
+		setTitle("Proveedor");
         setSize(700, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-
-        // Crear un panel para el contenido
+        
+     // Crear un panel para el contenido
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(null); 
         contentPanel.setBounds(200, 0, 433, 463);
         
-        // Campos de entrada
+     // Campos de entrada
         JLabel lblCif = new JLabel("Cif: ");
         lblCif.setBounds(25,50,100,25);
         contentPanel.add(lblCif);
@@ -48,7 +67,7 @@ public class VistaProveedores extends JFrame {
         lblNombre.setBounds(25,100,100,25);
         contentPanel.add(lblNombre);
         nombreTextField = new JTextField();
-
+        
         JLabel lblDireccion = new JLabel("Direccion: ");
         lblDireccion.setBounds(25,150,100,25);
         contentPanel.add(lblDireccion);
@@ -58,7 +77,7 @@ public class VistaProveedores extends JFrame {
         lblTelefono.setBounds(25,200,100,25);
         contentPanel.add(lblTelefono);
         nombreTextField = new JTextField();
-
+		
         btnActualizar = new JButton("Actualizar");
         btnActualizar.addActionListener(new ActionListener() {
             @Override
@@ -71,8 +90,8 @@ public class VistaProveedores extends JFrame {
                 actualizarProveedor(nuevoNombreProveedor, nuevaDireccionProveedor);
             }
         });
-
-        // Agregar elementos al panel de contenido
+        
+// Agregar elementos al panel de contenido
         
         cifTextField = new JTextField();
         cifTextField.setBounds(150,50, 200, 25);
@@ -97,27 +116,6 @@ public class VistaProveedores extends JFrame {
 
         // Mostrar la ventana
         setVisible(true);
-    }
-    
-    public VistaProveedores(Controlador controlador) {
-
-		this.controlador = controlador;
-		datos = new JFrame();
-		datos.setBounds(100, 100, 570, 400);
-		datos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		datos.setLocationRelativeTo(null);
-		datos.getContentPane().setLayout(null);
-		
-		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String id;
-				String rev;
-				id = (String) dtmConsulta.getValueAt(getTablaProveedores().getSelectedRow(), 0);
-				accionBotonActualizar(id);
-				// System.out.println("El boton modificar funciona");
-			}
-		});
 		
 		btnActualizar.setBounds(460, 60, 89, 23);
 		datos.getContentPane().add(btnActualizar);
@@ -127,11 +125,21 @@ public class VistaProveedores extends JFrame {
 				JButton btnEliminar = new JButton("Eliminar");
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String id;
-						id = (String) dtmConsulta.getValueAt(getTablaProveedores().getSelectedRow(), 0);
-						accionBotonBorrar(id);
+						String cif;
+						//id = (String) dtmConsulta.getValueAt(getTablaProveedores().getSelectedRow(), 0);
+						//accionBotonBorrar(cif);
 						// System.out.println(id + " " + rev);
 
+					}
+
+					private Object getTablaProveedores() {
+						// TODO Auto-generated method stub
+						return null;
+					}
+
+					private void accionBotonBorrar(String id) {
+						// TODO Auto-generated method stub
+						
 					}
 
 				});
@@ -147,6 +155,11 @@ public class VistaProveedores extends JFrame {
 						// System.out.println("El boton refresh tambien funciona");
 
 						accionBotonActualizar();
+					}
+
+					private void accionBotonActualizar() {
+						// TODO Auto-generated method stub
+						
 					}
 
 				});
@@ -184,6 +197,11 @@ public class VistaProveedores extends JFrame {
 
 					}
 
+					private void mostrarFormulario(char c) {
+						// TODO Auto-generated method stub
+						
+					}
+
 				});
 				
 				btnRegistrar.setBounds(460, 30, 89, 23);
@@ -194,7 +212,11 @@ public class VistaProveedores extends JFrame {
 				datos.setVisible(true);
 				mostrarDatos(new ArrayList());
 			}
-    }
+    private void inicializarComponentes() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
     private void actualizarProveedor(String nuevoNombreProveedor, String nuevaDireccionProveedor) {
         // Lógica para actualizar el proveedor (debes implementar tu lógica real aquí)
@@ -204,7 +226,7 @@ public class VistaProveedores extends JFrame {
     }
     
     protected void accionBotonActualizar(String cif, String nombre, String direccion, String telefono) {
-		controlador.actualizarCoche(proveedorSeleccionado.getId(),proveedorSeleccionado.getRevision(),nombre, direccion, telefono);
+	//	controladorProveedor.actualizarCoche(proveedorSeleccionado.getCif(),nombre, direccion, telefono);
 	}
 
 	protected void accionBotonSalir() {
@@ -225,16 +247,16 @@ public class VistaProveedores extends JFrame {
 	}
 
 	public void accionBotonRegistrar(String cif, String nombre, String direccion, String telefono) {
-		controlador.crearProveedor(cif, nombre, direccion, telefono);
+		controladorProveedor.crearProveedor(cif, nombre, direccion, telefono);
 	}
 
-}
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new VistaProveedores();
+                new VistaProveedor();
             }
         });
     }

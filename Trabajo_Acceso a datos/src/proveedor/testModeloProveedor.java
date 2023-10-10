@@ -2,11 +2,11 @@ package proveedor;
 
 import java.util.ArrayList;
 
-public class testModelo {
+public class testModeloProveedor {
 
 	public static void main(String[] args) {
 
-		Modelo modelo = new Modelo(null);
+		ModeloProveedor modelo = new ModeloProveedor(null);
 
 		Proveedor proveedor = new Proveedor("P324567", "Mariquita Perez", "Barcelona", "600546789");
 
