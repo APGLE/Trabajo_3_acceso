@@ -24,15 +24,15 @@ public class JFrameUsuarios extends JFrame {
     private List<Usuario> ListaUsuarios = new ArrayList<>();
     private List<Usuario> datosOriginales = new ArrayList<>();
     
-    public JFramePaises() {
-        super("Paises");
+    public JFrameUsuarios() {
+        super("Usuario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setSize(514, 395);
         setResizable(false);
         getContentPane().setLayout(null);
         
-        NombreTabla = new JLabel("Paises");
+        NombreTabla = new JLabel("Usuarios");
         NombreTabla.setBounds(25, 210, 100, 30);
         getContentPane().add(NombreTabla);
 
@@ -49,11 +49,9 @@ public class JFrameUsuarios extends JFrame {
         scrollPane.setBounds(25, 21, 464, 179);
         getContentPane().add(scrollPane);
 
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Continente");
-        modelo.addColumn("Aliados");
-        modelo.addColumn("Imagen");
-        modelo.addColumn("Habitantes");
+        modelo.addColumn("User");
+        modelo.addColumn("Password");
+        modelo.addColumn("Rol");
         
         delete = new JButton("Borrar");
         delete.setBounds(5, 311, 71, 23);
@@ -78,9 +76,8 @@ public class JFrameUsuarios extends JFrame {
         volver = new JButton("Volver");
         volver.setBounds(332, 311, 80, 23);
         getContentPane().add(volver);
-
         EscribirTitulos();
-
+/*
         ListaPaises.add(new Pais("Espania", "Europa", "Portugal", "imagen", 45000000));
         ListaPaises.add(new Pais("Italia", "Europa", "España", "imagen", 15623000));
         ListaPaises.add(new Pais("Malta", "Europa", "Portugal", "imagen", 64233400));
@@ -90,7 +87,8 @@ public class JFrameUsuarios extends JFrame {
         ListaPaises.add(new Pais("Francia", "Europa", "Portugal", "imagen", 46712300));
         
         EscribirTabla();
-
+*/
+        
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,21 +110,17 @@ public class JFrameUsuarios extends JFrame {
         insert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nombre = JOptionPane.showInputDialog(null, "Ingrese el nombre del país:");
-                String continente = JOptionPane.showInputDialog(null, "Ingrese el continente:");
-                String aliados = JOptionPane.showInputDialog(null, "Ingrese los aliados:");
-                String imagen = JOptionPane.showInputDialog(null, "Ingrese la URL de la imagen:");
-                int habitantes = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la cantidad de habitantes:"));
+                String user = JOptionPane.showInputDialog(null, "Ingrese el nombre del usuario:");
+                String password = JOptionPane.showInputDialog(null, "Ingrese la contraseña del usuario:");
+                String rol = JOptionPane.showInputDialog(null, "Ingrese su rol:");
                 
-                Pais nuevoPais = new Pais(nombre, continente, aliados, imagen, habitantes);
-                ListaPaises.add(nuevoPais);
+                Usuario nuevoUsuario = new Usuario(user, password, rol);
+                ListaUsuarios.add(nuevoUsuario);
                 
                 Object[] fila = new Object[modelo.getColumnCount()];
-                fila[0] = nuevoPais.getNombre();
-                fila[1] = nuevoPais.getContinente();
-                fila[2] = nuevoPais.getAliados();
-                fila[3] = nuevoPais.getImagen();
-                fila[4] = nuevoPais.getHabitantes();
+                fila[0] = nuevoUsuario.getUsuario();
+                fila[1] = nuevoUsuario.getPassword();
+                fila[2] = nuevoUsuario.getRol();
                 modelo.addRow(fila);
             }
         });
@@ -136,26 +130,20 @@ public class JFrameUsuarios extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = table_1.getSelectedRow();
                 if (selectedRow != -1) {
-                    String nombre = JOptionPane.showInputDialog(null, "Nombre actual: " + table_1.getValueAt(selectedRow, 0) + "\nIngrese el nuevo nombre:");
-                    String continente = JOptionPane.showInputDialog(null, "Continente actual: " + table_1.getValueAt(selectedRow, 1) + "\nIngrese el nuevo continente:");
-                    String aliados = JOptionPane.showInputDialog(null, "Aliados actuales: " + table_1.getValueAt(selectedRow, 2) + "\nIngrese los nuevos aliados:");
-                    String imagen = JOptionPane.showInputDialog(null, "Imagen actual: " + table_1.getValueAt(selectedRow, 3) + "\nIngrese la nueva URL de la imagen:");
-                    int habitantes = Integer.parseInt(JOptionPane.showInputDialog(null, "Habitantes actuales: " + table_1.getValueAt(selectedRow, 4) + "\nIngrese la nueva cantidad de habitantes:"));
+                    String user = JOptionPane.showInputDialog(null, "Usuario actual: " + table_1.getValueAt(selectedRow, 0) + "\n Ingrese el nuevo usuario:");
+                    String password = JOptionPane.showInputDialog(null, "Contraseña actual: " + table_1.getValueAt(selectedRow, 1) + "\n Ingrese la nueva contraseña:");
+                    String rol = JOptionPane.showInputDialog(null, "Rol actual: " + table_1.getValueAt(selectedRow, 2) + "\n Ingrese el nuevo:");
                     
-                    Pais paisActualizado = ListaPaises.get(selectedRow);
-                    paisActualizado.setNombre(nombre);
-                    paisActualizado.setContinente(continente);
-                    paisActualizado.setAliados(aliados);
-                    paisActualizado.setImagen(imagen);
-                    paisActualizado.setHabitantes(habitantes);
+                    Usuario usuarioActualizado = ListaUsuarios.get(selectedRow);
+                    usuarioActualizado.setUsuario(user);
+                    usuarioActualizado.setPassword(password);
+                    usuarioActualizado.setRol(rol);
                     
-                    table_1.setValueAt(nombre, selectedRow, 0);
-                    table_1.setValueAt(continente, selectedRow, 1);
-                    table_1.setValueAt(aliados, selectedRow, 2);
-                    table_1.setValueAt(imagen, selectedRow, 3);
-                    table_1.setValueAt(habitantes, selectedRow, 4);
+                    table_1.setValueAt(user, selectedRow, 0);
+                    table_1.setValueAt(password, selectedRow, 1);
+                    table_1.setValueAt(rol, selectedRow, 2);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Selecciona un país para actualizar.");
+                    JOptionPane.showMessageDialog(null, "Selecciona un usuario para actualizar.");
                 }
             }
         });
@@ -166,7 +154,7 @@ public class JFrameUsuarios extends JFrame {
                 String filtro = JOptionPane.showInputDialog(null, "Introduce un filtro:");
                 if (filtro != null) {
                     almacenarDatosOriginales();
-                    List<Pais> resultados = filtrar(filtro);
+                    List<Usuario> resultados = filtrar(filtro);
                     actualizarTabla(resultados);
                     volver.setEnabled(true);
                 }
@@ -190,23 +178,19 @@ public class JFrameUsuarios extends JFrame {
 
     public void EscribirTitulos() {
         Object[] titulos = new Object[modelo.getColumnCount()];
-        titulos[0] = "Nombre";
-        titulos[1] = "Continente";
-        titulos[2] = "Aliados";
-        titulos[3] = "Imagen";
-        titulos[4] = "Habitantes";
+        titulos[0] = "User";
+        titulos[1] = "Password";
+        titulos[2] = "Rol";
 
         modelo.addRow(titulos);
     }
 
     public void EscribirTabla() {
-        for (Pais p : ListaPaises) {
+        for (Usuario u : ListaUsuarios) {
             Object[] Fila = new Object[modelo.getColumnCount()];
-            Fila[0] = p.getNombre();
-            Fila[1] = p.getContinente();
-            Fila[2] = p.getAliados();
-            Fila[3] = p.getImagen();
-            Fila[4] = p.getHabitantes();
+            Fila[0] = u.getUsuario();
+            Fila[1] = u.getPassword();
+            Fila[2] = u.getRol();
 
             try {
                 modelo.addRow(Fila);
@@ -216,30 +200,29 @@ public class JFrameUsuarios extends JFrame {
         }
     }
 
-    public List<Pais> filtrar(String filtro) {
-        List<Pais> resultadosFiltrados = new ArrayList<>();
+    public List<Usuario> filtrar(String filtro) {
+        List<Usuario> resultadosFiltrados = new ArrayList<>();
 
         for (int i = 0; i < modelo.getRowCount(); i++) {
             String nombre = (String) modelo.getValueAt(i, 0);
             if (nombre.toLowerCase().contains(filtro.toLowerCase())) {
-                resultadosFiltrados.add(ListaPaises.get(i));
+                resultadosFiltrados.add(ListaUsuarios.get(i));
             }
         }
 
         return resultadosFiltrados;
     }
 
-    public void actualizarTabla(List<Pais> resultados) {
+    public void actualizarTabla(List<Usuario> resultados) {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        for (Pais pais : resultados) {
+        for (Usuario u : resultados) {
             Object[] fila = new Object[modelo.getColumnCount()];
-            fila[0] = pais.getNombre();
-            fila[1] = pais.getContinente();
-            fila[2] = pais.getAliados();
-            fila[3] = pais.getImagen();
-            fila[4] = pais.getHabitantes();
+            fila[0] = u.getUsuario();
+            fila[1] = u.getPassword();
+            fila[2] = u.getRol();
+            
 
             modelo.addRow(fila);
         }
@@ -247,7 +230,7 @@ public class JFrameUsuarios extends JFrame {
     
     private void almacenarDatosOriginales() {
         datosOriginales.clear();
-        datosOriginales.addAll(ListaPaises);
+        datosOriginales.addAll(ListaUsuarios);
     }
 
     private void volver() {
@@ -256,7 +239,7 @@ public class JFrameUsuarios extends JFrame {
     }
 
     public static void main(String[] args) {
-        JFramePaises frame = new JFramePaises();
+        JFrameUsuarios frame = new JFrameUsuarios();
         frame.setVisible(true);
     }
 }

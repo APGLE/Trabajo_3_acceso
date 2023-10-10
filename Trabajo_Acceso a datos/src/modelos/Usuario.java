@@ -2,7 +2,7 @@ package modelos;
 
 public class Usuario {
 	
-	private String usuario;
+	private String user;
 	private String password;
 	private String rol;
 	
@@ -17,17 +17,17 @@ public class Usuario {
 	
 	public Usuario(String usuario, String password, String rol) {
 		super();
-		this.usuario = usuario;
+		this.user = usuario;
 		this.password = password;
 		this.rol = rol;
 	}
 
 	public String getUsuario() {
-		return usuario;
+		return user;
 	}
 
 	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+		this.user = usuario;
 	}
 
 	public String getPassword() {
@@ -48,7 +48,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [usuario=" + usuario + ", password=" + password + ", rol=" + rol + "]";
+		return "Usuario [usuario=" + user + ", password=" + password + ", rol=" + rol + "]";
 	}
 	
 	
