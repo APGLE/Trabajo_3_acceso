@@ -1,4 +1,4 @@
-package modelos;
+package proveedor;
 
 import java.util.ArrayList;
 
@@ -16,15 +16,15 @@ public class testModelo {
 
 //		modelo.registrarUsuario(usuario);
 
-		Producto producto = new Producto("PR123456", "Escritorio nordico", "", "Mesa blanca escritorio", "Mesas",
-				25.00);
-
-		modelo.registrarProducto(producto);
-		
-		Producto producto2 = new Producto("PR765432", "Silla jardin", "", "Silla plastico jardin", "Sillas",
-				10.00);
-
-		modelo.registrarProducto(producto2);
+//		Producto producto = new Producto("PR123456", "Escritorio nordico", "", "Mesa blanca escritorio", "Mesas",
+//				25.00);
+//
+//		modelo.registrarProducto(producto);
+//		
+//		Producto producto2 = new Producto("PR765432", "Silla jardin", "", "Silla plastico jardin", "Sillas",
+//				10.00);
+//
+//		modelo.registrarProducto(producto2);
 
 //		producto.setDescripcion("Silla madera comedor");
 //		producto.setNombre("Silla comedor");
@@ -47,17 +47,17 @@ public class testModelo {
 
 //		System.out.println(producto3);
 		
-		ArrayList<Producto> productos = new ArrayList();
-		
-		productos = (ArrayList<Producto>) modelo.listarProductos();
-		
-		for (Producto producto4 : productos) {
-			
-		System.out.println(producto4);
+//		ArrayList<Producto> productos = new ArrayList();
+//		
+//		productos = (ArrayList<Producto>) modelo.listarProductos();
+//		
+//		for (Producto producto4 : productos) {
+//			
+//		System.out.println(producto4);
 		
 		//Inventario inventario = new Inventario(""+""+"PR765432"+"P324567"+"")
 		}
 
 	}
 
-}
+

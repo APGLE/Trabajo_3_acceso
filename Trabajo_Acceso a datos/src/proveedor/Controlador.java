@@ -1,10 +1,10 @@
-package controlador;
+package proveedor;
 
 import java.util.ArrayList;
 
 public class Controlador {
 
-	private VistaProveedores vista;
+	private VistaProveedor vista;
 	private Modelo modelo;
 
 	
