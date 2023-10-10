@@ -7,11 +7,11 @@ import java.util.List;
 
 import controlador.Controlador;
 
-public class Modelo {
+public class ModeloProveedor {
 	private Controlador controlador;
 	private Connection connection;
 
-	public Modelo(Controlador controlador) {
+	public ModeloProveedor(Controlador controlador) {
 		super();
 
 		this.controlador = controlador;

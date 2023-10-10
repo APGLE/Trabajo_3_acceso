@@ -2,42 +2,42 @@ package proveedor;
 
 import java.util.ArrayList;
 
-public class Controlador {
+public class ControladorProveedor {
 
 	private VistaProveedor vista;
-	private Modelo modelo;
+	private ModeloProveedor modelo;
 
 	
-	public Controlador() {
+	public ControladorProveedor() {
 		super();
-		modelo = new Modelo(this);
-		vista = new Vista(this);
+		modeloProveedor = new ModeloProveedor(this);
+		vistaProveedor = new VistaProveedor(this);
 		actualizarTabla();
 	}
 
-	public void registrarProducto(String nombre, String descripcion, float precio_unitario, String categoria, String imagen) {
+	public void registrarProducto(String cif, String nombre, String direccion, String telefono) {
 
-		Productos document = new Productos(nombre, descripcion, precio_unitario, categoria, imagen);
-		modelo.createDoc(document);
+		Proveedor document = new Proveedor("cif", "nombre", "direccion", "telefono");
+		modeloProveedor.createDoc(document);
 		actualizarTabla();
 
 	}
 
-	public void actualizarProducto(String nombre, String descripcion, float precio_unitario, String categoria, String imagen) {
+	public void actualizarProducto(String cif, String nombre, String direccion, String telefono) {
 		vista.datoIntroducido(document);
 
 	}
 	
 	public void actualizarTabla() {
 		
-		ArrayList<Productos> datos = (ArrayList<Productos>) modelo.readAllDocsAndData();
+		ArrayList<Proveedor> datos = (ArrayList<Proveedor>) modeloProveedor.readAllDocsAndData();
 		vista.mostrarDatos(datos);
 		
 	}
 
 	public void borrarProducto(String id, String rev) {
 		
-		Productos p = new Productos(id,rev); 
+		Proveedor p = new Proveedor(cif); 
 		modelo.deleteDoc(p);
 		actualizarTabla();
 		
@@ -59,6 +59,11 @@ public class Controlador {
 		coche.setColor(color);
 		modelo.updateDoc(coche);
 		actualizarTabla();
+		
+	}
+
+	public void crearProveedor(String cif, String nombre, String direccion, String telefono) {
+		// TODO Auto-generated method stub
 		
 	}*/
 
