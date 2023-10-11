@@ -242,4 +242,92 @@ public class JFrameUsuarios extends JFrame {
         JFrameUsuarios frame = new JFrameUsuarios();
         frame.setVisible(true);
     }
+
+	public JTable getTable_1() {
+		return table_1;
+	}
+
+	public void setTable_1(JTable table_1) {
+		this.table_1 = table_1;
+	}
+
+	public DefaultTableModel getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(DefaultTableModel modelo) {
+		this.modelo = modelo;
+	}
+
+	public JLabel getNombreTabla() {
+		return NombreTabla;
+	}
+
+	public void setNombreTabla(JLabel nombreTabla) {
+		NombreTabla = nombreTabla;
+	}
+
+	public JButton getDelete() {
+		return delete;
+	}
+
+	public void setDelete(JButton delete) {
+		this.delete = delete;
+	}
+
+	public JButton getInsert() {
+		return insert;
+	}
+
+	public void setInsert(JButton insert) {
+		this.insert = insert;
+	}
+
+	public JButton getUpdate() {
+		return update;
+	}
+
+	public void setUpdate(JButton update) {
+		this.update = update;
+	}
+
+	public JButton getFiltrar() {
+		return filtrar;
+	}
+
+	public void setFiltrar(JButton filtrar) {
+		this.filtrar = filtrar;
+	}
+
+	public JButton getSalir() {
+		return salir;
+	}
+
+	public void setSalir(JButton salir) {
+		this.salir = salir;
+	}
+
+	public JButton getVolver() {
+		return volver;
+	}
+
+	public void setVolver(JButton volver) {
+		this.volver = volver;
+	}
+
+	public List<Usuario> getListaUsuarios() {
+		return ListaUsuarios;
+	}
+
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
+		ListaUsuarios = listaUsuarios;
+	}
+
+	public List<Usuario> getDatosOriginales() {
+		return datosOriginales;
+	}
+
+	public void setDatosOriginales(List<Usuario> datosOriginales) {
+		this.datosOriginales = datosOriginales;
+	}
 }
