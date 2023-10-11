@@ -1,7 +1,5 @@
 package Usuario;
 
-import Usuario.JFrameUsuarios;
-
 public class Test {
 
 	public static void main(String[] args) {
