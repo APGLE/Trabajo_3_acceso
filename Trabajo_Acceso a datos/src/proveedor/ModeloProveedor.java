@@ -1,20 +1,15 @@
 package proveedor;
 
 import java.sql.*;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import controlador.Controlador;
-
 public class ModeloProveedor {
-	private Controlador controlador;
 	private Connection connection;
 
-	public ModeloProveedor(Controlador controlador) {
+	public ModeloProveedor(ControladorProveedor controladorProveedor) {
 		super();
 
-		this.controlador = controlador;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
