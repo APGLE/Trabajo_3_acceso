@@ -2,22 +2,26 @@ package controlador;
 
 import java.util.ArrayList;
 
+import modelos.Modelo;
+import modelos.Producto;
+import vista.Vista;
+
 public class Controlador {
 
-	private VistaProveedores vista;
+	private Vista vista;
 	private Modelo modelo;
 
 	
 	public Controlador() {
 		super();
 		modelo = new Modelo(this);
-		vista = new Vista(this);
+		vista = new Vista();
 		actualizarTabla();
 	}
 
 	public void registrarProducto(String nombre, String descripcion, float precio_unitario, String categoria, String imagen) {
 
-		Productos document = new Productos(nombre, descripcion, precio_unitario, categoria, imagen);
+		Producto document = new Producto();
 		modelo.createDoc(document);
 		actualizarTabla();
 
@@ -30,36 +34,22 @@ public class Controlador {
 	
 	public void actualizarTabla() {
 		
-		ArrayList<Productos> datos = (ArrayList<Productos>) modelo.readAllDocsAndData();
+		ArrayList<Producto> datos = (ArrayList<Producto>) modelo.readAllDocsAndData();
 		vista.mostrarDatos(datos);
 		
 	}
 
 	public void borrarProducto(String id, String rev) {
 		
-		Productos p = new Productos(id,rev); 
+		Producto p = new Producto(); 
 		modelo.deleteDoc(p);
 		actualizarTabla();
 		
 	}
 
-	public  Productos recuperarCoche(String id) {
+	public  Producto recuperarCoche(String id) {
 		
 		return modelo.readDoc(id);
 				
 	}
-
-	public void actualizarCoche(String id, String revision, String matricula, String marca, String modelo2, String km,
-			String color) {
-		Coche coche = recuperarCoche(id);
-		coche.setMarca(marca);
-		coche.setMatricula(matricula);
-		coche.setModelo(modelo2);
-		coche.setKm(km);
-		coche.setColor(color);
-		modelo.updateDoc(coche);
-		actualizarTabla();
-		
-	}*/
-
 }

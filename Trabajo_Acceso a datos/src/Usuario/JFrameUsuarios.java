@@ -23,7 +23,11 @@ import vista.Interfaz_Menu_Usuario;
 
 public class JFrameUsuarios extends JFrame {
 
-    private JTable table_1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTable table_1;
     private DefaultTableModel modelo;
     private JLabel NombreTabla;
     private JButton delete, insert, update, filtrar, salir, volver;
