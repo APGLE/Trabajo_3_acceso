@@ -2,6 +2,10 @@ package Usuario;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +18,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import modelos.Usuario;
+import vista.Interfaz_Menu;
+import vista.Interfaz_Menu_Usuario;
 
 public class JFrameUsuarios extends JFrame {
 
@@ -76,18 +82,7 @@ public class JFrameUsuarios extends JFrame {
         volver = new JButton("Volver");
         volver.setBounds(332, 311, 80, 23);
         getContentPane().add(volver);
-        EscribirTitulos();
-/*
-        ListaPaises.add(new Pais("Espania", "Europa", "Portugal", "imagen", 45000000));
-        ListaPaises.add(new Pais("Italia", "Europa", "España", "imagen", 15623000));
-        ListaPaises.add(new Pais("Malta", "Europa", "Portugal", "imagen", 64233400));
-        ListaPaises.add(new Pais("Estados Unidos", "América", "Portugal", "imagen", 889912300));
-        ListaPaises.add(new Pais("Argentina", "América", "Portugal", "imagen", 64312300));
-        ListaPaises.add(new Pais("Chile", "América", "Portugal", "imagen", 242312300));
-        ListaPaises.add(new Pais("Francia", "Europa", "Portugal", "imagen", 46712300));
         
-        EscribirTabla();
-*/
         
         delete.addActionListener(new ActionListener() {
             @Override
@@ -164,8 +159,12 @@ public class JFrameUsuarios extends JFrame {
         salir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
+            	 int option = JOptionPane.showConfirmDialog(null, "¿Estás seguro de salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
+                 if (option == JOptionPane.YES_OPTION) {
+                     dispose(); // Cierra la ventana actual
+                     new Interfaz_Menu();
+                 }
+           }
         });
         
         volver.addActionListener(new ActionListener() {
@@ -176,14 +175,6 @@ public class JFrameUsuarios extends JFrame {
         });
     }
 
-    public void EscribirTitulos() {
-        Object[] titulos = new Object[modelo.getColumnCount()];
-        titulos[0] = "User";
-        titulos[1] = "Password";
-        titulos[2] = "Rol";
-
-        modelo.addRow(titulos);
-    }
 
     public void EscribirTabla() {
         for (Usuario u : ListaUsuarios) {
@@ -228,6 +219,36 @@ public class JFrameUsuarios extends JFrame {
         }
     }
     
+    private boolean actualizarObjeto(int idObjeto, String nuevoNombreObjeto, double nuevoPrecio, String nuevaDescripcion, String nuevaCategoria, String nuevaImagen) {
+        String url = "jdbc:mysql://localhost:3306/tu_base_de_datos";
+        String usuario = "tu_usuario";
+        String contraseña = "tu_contraseña";
+
+        try {
+            Connection connection = DriverManager.getConnection(url, usuario, contraseña);
+            String consulta = "UPDATE objetos SET nombre = ?, precio = ?, descripcion = ?, categoria = ?, imagen = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(consulta);
+            preparedStatement.setString(1, nuevoNombreObjeto);
+            preparedStatement.setDouble(2, nuevoPrecio);
+            preparedStatement.setString(3, nuevaDescripcion);
+            preparedStatement.setString(4, nuevaCategoria);
+            preparedStatement.setString(5, nuevaImagen);
+            preparedStatement.setInt(6, idObjeto);
+
+            int filasAfectadas = preparedStatement.executeUpdate();
+
+            // Cerrar la conexión
+            preparedStatement.close();
+            connection.close();
+
+            return filasAfectadas > 0; // Retorna true si al menos una fila fue afectada (éxito)
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false; // Retorna false en caso de error
+        }
+    }
+    
+    
     private void almacenarDatosOriginales() {
         datosOriginales.clear();
         datosOriginales.addAll(ListaUsuarios);
@@ -243,91 +264,4 @@ public class JFrameUsuarios extends JFrame {
         frame.setVisible(true);
     }
 
-	public JTable getTable_1() {
-		return table_1;
-	}
-
-	public void setTable_1(JTable table_1) {
-		this.table_1 = table_1;
-	}
-
-	public DefaultTableModel getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(DefaultTableModel modelo) {
-		this.modelo = modelo;
-	}
-
-	public JLabel getNombreTabla() {
-		return NombreTabla;
-	}
-
-	public void setNombreTabla(JLabel nombreTabla) {
-		NombreTabla = nombreTabla;
-	}
-
-	public JButton getDelete() {
-		return delete;
-	}
-
-	public void setDelete(JButton delete) {
-		this.delete = delete;
-	}
-
-	public JButton getInsert() {
-		return insert;
-	}
-
-	public void setInsert(JButton insert) {
-		this.insert = insert;
-	}
-
-	public JButton getUpdate() {
-		return update;
-	}
-
-	public void setUpdate(JButton update) {
-		this.update = update;
-	}
-
-	public JButton getFiltrar() {
-		return filtrar;
-	}
-
-	public void setFiltrar(JButton filtrar) {
-		this.filtrar = filtrar;
-	}
-
-	public JButton getSalir() {
-		return salir;
-	}
-
-	public void setSalir(JButton salir) {
-		this.salir = salir;
-	}
-
-	public JButton getVolver() {
-		return volver;
-	}
-
-	public void setVolver(JButton volver) {
-		this.volver = volver;
-	}
-
-	public List<Usuario> getListaUsuarios() {
-		return ListaUsuarios;
-	}
-
-	public void setListaUsuarios(List<Usuario> listaUsuarios) {
-		ListaUsuarios = listaUsuarios;
-	}
-
-	public List<Usuario> getDatosOriginales() {
-		return datosOriginales;
-	}
-
-	public void setDatosOriginales(List<Usuario> datosOriginales) {
-		this.datosOriginales = datosOriginales;
-	}
 }
