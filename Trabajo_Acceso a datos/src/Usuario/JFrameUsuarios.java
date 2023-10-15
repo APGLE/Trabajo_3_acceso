@@ -241,14 +241,13 @@ public class JFrameUsuarios extends JFrame {
 
             int filasAfectadas = preparedStatement.executeUpdate();
 
-            // Cerrar la conexión
             preparedStatement.close();
             connection.close();
 
-            return filasAfectadas > 0; // Retorna true si al menos una fila fue afectada (éxito)
+            return filasAfectadas > 0;
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false; // Retorna false en caso de error
+            return false;
         }
     }
     
