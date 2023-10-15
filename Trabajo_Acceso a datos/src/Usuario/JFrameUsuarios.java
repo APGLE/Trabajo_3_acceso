@@ -165,7 +165,7 @@ public class JFrameUsuarios extends JFrame {
             public void actionPerformed(ActionEvent e) {
             	 int option = JOptionPane.showConfirmDialog(null, "¿Estás seguro de salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
                  if (option == JOptionPane.YES_OPTION) {
-                     dispose(); // Cierra la ventana actual
+                     dispose(); 
                      new Interfaz_Menu();
                  }
            }
@@ -223,10 +223,12 @@ public class JFrameUsuarios extends JFrame {
         }
     }
     
+    //Esto es para enlazar la base de datos con la aplicación
+    
     private boolean actualizarObjeto(int idObjeto, String nuevoNombreObjeto, double nuevoPrecio, String nuevaDescripcion, String nuevaCategoria, String nuevaImagen) {
-        String url = "jdbc:mysql://localhost:3306/tu_base_de_datos";
-        String usuario = "tu_usuario";
-        String contraseña = "tu_contraseña";
+        String url = "jdbc:mysql://localhost:3306/tiendamuebles\", \"root\", \"\");";
+        String usuario = "";
+        String contraseña = "";
 
         try {
             Connection connection = DriverManager.getConnection(url, usuario, contraseña);
