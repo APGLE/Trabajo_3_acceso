@@ -6,85 +6,76 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import modelos.Producto;
 
 public class Interfaz_Objeto extends JFrame {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private JLabel nombreLabel;
+    private JLabel precioLabel;
+    private JLabel descripcionLabel;
+    private JLabel categoriaLabel;
+    private JLabel imagenLabel;
 
-	public Interfaz_Objeto(String nombre, String descripcion, double precio, String categoria, String imagenPath) {
-        // Configurar la ventana de detalles del objeto
+    public Interfaz_Objeto(Producto producto) {
         setTitle("Detalles del Objeto");
-        setSize(400, 300);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Crear un panel para el contenido
         JPanel contentPanel = new JPanel();
-        contentPanel.setBounds(0, 0, 386, 263);
+        contentPanel.setLayout(new GridLayout(1, 2));
 
-        // Panel para la imagen
         JPanel imagenPanel = new JPanel();
-        imagenPanel.setBounds(0, 0, 200, 263);
-        imagenPanel.setPreferredSize(new Dimension(200, 200));
+        imagenPanel.setPreferredSize(new Dimension(300, 300));
         imagenPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        // Cargar la imagen del objeto
-        JLabel imagenLabel = new JLabel();
         try {
-            BufferedImage imagen = ImageIO.read(new File(imagenPath));
-            ImageIcon imagenIcon = new ImageIcon(imagen.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
-            imagenLabel.setIcon(imagenIcon);
+            BufferedImage imagen = ImageIO.read(new File(producto.getImagen()));
+            ImageIcon imagenIcon = new ImageIcon(imagen.getScaledInstance(300, 300, Image.SCALE_SMOOTH));
+            imagenLabel = new JLabel(imagenIcon);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        getContentPane().setLayout(null);
 
-        imagenPanel.add(imagenLabel);
-
-        // Panel para la descripción, nombre y categoría
         JPanel infoPanel = new JPanel();
-        infoPanel.setBounds(200, 0, 186, 263);
+        infoPanel.setLayout(new GridLayout(5, 1));
 
-        JLabel nombreLabel = new JLabel("Nombre: " + nombre);
-        nombreLabel.setBounds(0, 0, 102, 13);
-        JLabel precioLabel = new JLabel("Precio: " + precio);
-        precioLabel.setBounds(136, 0, 50, 13);
-        JLabel descripcionLabel = new JLabel("Descripción: " + descripcion);
-        descripcionLabel.setBounds(0, 13, 186, 184);
-        JLabel categoriaLabel = new JLabel("Categoría: " + categoria);
-        categoriaLabel.setBounds(0, 207, 113, 13);
-        infoPanel.setLayout(null);
+        nombreLabel = new JLabel("Nombre: " + producto.getNombre());
+        precioLabel = new JLabel("Precio: " + producto.getPrecio());
+        descripcionLabel = new JLabel("Descripción: " + producto.getDescripcion());
+        categoriaLabel = new JLabel("Categoría: " + producto.getCategoria());
 
         infoPanel.add(nombreLabel);
         infoPanel.add(precioLabel);
         infoPanel.add(descripcionLabel);
         infoPanel.add(categoriaLabel);
-        contentPanel.setLayout(null);
 
-        // Agregar elementos al panel de contenido
         contentPanel.add(imagenPanel);
         contentPanel.add(infoPanel);
-        
-        JButton botonactualizar = new JButton("Actualizar informacion");
-        botonactualizar.setBounds(51, 242, 135, 21);
+
+        JButton botonactualizar = new JButton("Actualizar información");
         infoPanel.add(botonactualizar);
 
-        // Agregar el panel de contenido a la ventana
-        getContentPane().add(contentPanel);
+        botonactualizar.addActionListener(e -> {
+            Interfaz_Actualizar_Objeto actualizarObjeto = new Interfaz_Actualizar_Objeto(producto);
 
-        // Mostrar la ventana
+            if (actualizarObjeto.isActualizacionExitosa()) {
+                nombreLabel.setText("Nombre: " + actualizarObjeto.getNombreActualizado());
+                precioLabel.setText("Precio: " + actualizarObjeto.getPrecioActualizado());
+                descripcionLabel.setText("Descripción: " + actualizarObjeto.getDescripcionActualizada());
+                categoriaLabel.setText("Categoría: " + actualizarObjeto.getCategoriaActualizada());
+                // También puedes actualizar la imagen si es necesario
+                // imagenLabel.setIcon(actualizarObjeto.getImagenActualizada());
+            }
+        });
+
+        getContentPane().add(contentPanel);
         setVisible(true);
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                // Ejemplo de uso de la interfaz de objeto
-                new Interfaz_Objeto("Producto 1", "Descripción del producto 1", 29.99, "Electrónica", "imagen_producto1.jpg");
-            }
+        SwingUtilities.invokeLater(() -> {
+            Producto producto = new Producto("1", "Producto 1", "imagen_producto1.jpg", "Descripción del producto 1", "Electrónica", 29.99);
+            new Interfaz_Objeto(producto);
         });
     }
 }

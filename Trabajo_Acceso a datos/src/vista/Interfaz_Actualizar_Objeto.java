@@ -4,175 +4,99 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import modelos.Producto;
 
 public class Interfaz_Actualizar_Objeto extends JFrame {
-    private static final long serialVersionUID = 1L;
     private JTextField idObjetoTextField;
-    private JTextField nombreObjetoTextField;
+    private JTextField nuevoNombreObjetoTextField;
     private JTextField nuevoPrecioTextField;
-    private JTextField descripcionTextField;
-    private JTextField categoriaTextField;
-    private JTextField imagenTextField;
-    private JButton btnActualizarObjeto;
+    private JTextField nuevaDescripcionTextField;
+    private JTextField nuevaCategoriaTextField;
+    private boolean actualizacionExitosa = false;
 
-    public Interfaz_Actualizar_Objeto() {
-        // Configurar la ventana de actualización de objeto
+    public Interfaz_Actualizar_Objeto(Producto producto) {
         setTitle("Actualizar Objeto");
-        setSize(400, 300); // Aumentamos la altura para acomodar la descripción y la categoría
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Crear un panel para el contenido
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new GridLayout(7, 2, 10, 10)); // 7 filas, 2 columnas
+        contentPanel.setLayout(new GridLayout(6, 2, 10, 10));
 
-        // Campos de entrada
         JLabel lblIdObjeto = new JLabel("ID del Objeto:");
-        idObjetoTextField = new JTextField();
+        idObjetoTextField = new JTextField(producto.getId());
+        idObjetoTextField.setEditable(false);
 
-        JLabel lblNombreObjeto = new JLabel("Nuevo Nombre:");
-        nombreObjetoTextField = new JTextField();
+        JLabel lblNuevoNombreObjeto = new JLabel("Nuevo Nombre:");
+        nuevoNombreObjetoTextField = new JTextField(producto.getNombre());
 
         JLabel lblNuevoPrecio = new JLabel("Nuevo Precio:");
-        nuevoPrecioTextField = new JTextField();
+        nuevoPrecioTextField = new JTextField(String.valueOf(producto.getPrecio()));
 
-        JLabel lblDescripcion = new JLabel("Nueva Descripción:");
-        descripcionTextField = new JTextField();
+        JLabel lblNuevaDescripcion = new JLabel("Nueva Descripción:");
+        nuevaDescripcionTextField = new JTextField(producto.getDescripcion());
 
-        JLabel lblCategoria = new JLabel("Nueva Categoría:");
-        categoriaTextField = new JTextField();
+        JLabel lblNuevaCategoria = new JLabel("Nueva Categoría:");
+        nuevaCategoriaTextField = new JTextField(producto.getCategoria());
 
-        JLabel lblImagen = new JLabel("Nueva Imagen:");
-        imagenTextField = new JTextField();
+        JButton btnActualizarObjeto = new JButton("Actualizar Objeto");
 
-        btnActualizarObjeto = new JButton("Actualizar Objeto");
-        btnActualizarObjeto.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Obtener la ID del objeto a actualizar
-                int idObjeto = Integer.parseInt(idObjetoTextField.getText());
-
-                // Verificar si la ID existe en la base de datos
-                if (existeObjeto(idObjeto)) {
-                    // La ID existe, mostrar ventana de actualización
-                    String nuevoNombreObjeto = nombreObjetoTextField.getText();
-                    double nuevoPrecio = Double.parseDouble(nuevoPrecioTextField.getText());
-                    String nuevaDescripcion = descripcionTextField.getText();
-                    String nuevaCategoria = categoriaTextField.getText();
-                    String nuevaImagen = imagenTextField.getText();
-
-                    // Lógica para actualizar el objeto en la base de datos
-                    if (actualizarObjeto(idObjeto, nuevoNombreObjeto, nuevoPrecio, nuevaDescripcion, nuevaCategoria, nuevaImagen)) {
-                        JOptionPane.showMessageDialog(
-                            Interfaz_Actualizar_Objeto.this,
-                            "Objeto actualizado con éxito."
-                        );
-                    } else {
-                        JOptionPane.showMessageDialog(
-                            Interfaz_Actualizar_Objeto.this,
-                            "Error al actualizar el objeto. Verifica la conexión a la base de datos."
-                        );
-                    }
-                } else {
-                    // La ID no existe, mostrar ventana de error
-                    JOptionPane.showMessageDialog(
-                        Interfaz_Actualizar_Objeto.this,
-                        "La ID del objeto no existe en la base de datos. Introduce una ID válida."
-                    );
-                }
-            }
-        });
-
-        // Agregar elementos al panel de contenido
         contentPanel.add(lblIdObjeto);
         contentPanel.add(idObjetoTextField);
-        contentPanel.add(lblNombreObjeto);
-        contentPanel.add(nombreObjetoTextField);
+        contentPanel.add(lblNuevoNombreObjeto);
+        contentPanel.add(nuevoNombreObjetoTextField);
         contentPanel.add(lblNuevoPrecio);
         contentPanel.add(nuevoPrecioTextField);
-        contentPanel.add(lblDescripcion);
-        contentPanel.add(descripcionTextField);
-        contentPanel.add(lblCategoria);
-        contentPanel.add(categoriaTextField);
-        contentPanel.add(lblImagen);
-        contentPanel.add(imagenTextField);
+        contentPanel.add(lblNuevaDescripcion);
+        contentPanel.add(nuevaDescripcionTextField);
+        contentPanel.add(lblNuevaCategoria);
+        contentPanel.add(nuevaCategoriaTextField);
         contentPanel.add(btnActualizarObjeto);
 
-        // Agregar el panel de contenido a la ventana
-        getContentPane().add(contentPanel);
+        btnActualizarObjeto.addActionListener(e -> {
+            // Obtener los datos actualizados desde los campos de texto
+            String nuevoNombreObjeto = nuevoNombreObjetoTextField.getText();
+            double nuevoPrecio = Double.parseDouble(nuevoPrecioTextField.getText());
+            String nuevaDescripcion = nuevaDescripcionTextField.getText();
+            String nuevaCategoria = nuevaCategoriaTextField.getText();
 
-        // Mostrar la ventana
+            // Lógica para actualizar el objeto en la base de datos
+            // Debes implementar la lógica real para actualizar la base de datos aquí
+
+            // Simula una actualización exitosa (debes implementar la lógica real)
+            actualizacionExitosa = true;
+
+            dispose();
+        });
+
+        getContentPane().add(contentPanel);
         setVisible(true);
     }
 
-    // Función para verificar si la ID del objeto existe en la base de datos
-    private boolean existeObjeto(int idObjeto) {
-        String url = "jdbc:mysql://localhost:3306/tu_base_de_datos";
-        String usuario = "tu_usuario";
-        String contraseña = "tu_contraseña";
-
-        try {
-            Connection connection = DriverManager.getConnection(url, usuario, contraseña);
-            String consulta = "SELECT id FROM objetos WHERE id = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(consulta);
-            preparedStatement.setInt(1, idObjeto);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            boolean existe = resultSet.next();
-
-            // Cerrar la conexión
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-
-            return existe;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return false; // En caso de error, se considera que la ID no existe
-        }
+    public boolean isActualizacionExitosa() {
+        return actualizacionExitosa;
     }
 
-    // Función para actualizar el objeto en la base de datos
-    private boolean actualizarObjeto(int idObjeto, String nuevoNombreObjeto, double nuevoPrecio, String nuevaDescripcion, String nuevaCategoria, String nuevaImagen) {
-        String url = "jdbc:mysql://localhost:3306/tu_base_de_datos";
-        String usuario = "tu_usuario";
-        String contraseña = "tu_contraseña";
+    public String getNombreActualizado() {
+        return nuevoNombreObjetoTextField.getText();
+    }
 
-        try {
-            Connection connection = DriverManager.getConnection(url, usuario, contraseña);
-            String consulta = "UPDATE objetos SET nombre = ?, precio = ?, descripcion = ?, categoria = ?, imagen = ? WHERE id = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(consulta);
-            preparedStatement.setString(1, nuevoNombreObjeto);
-            preparedStatement.setDouble(2, nuevoPrecio);
-            preparedStatement.setString(3, nuevaDescripcion);
-            preparedStatement.setString(4, nuevaCategoria);
-            preparedStatement.setString(5, nuevaImagen);
-            preparedStatement.setInt(6, idObjeto);
+    public double getPrecioActualizado() {
+        return Double.parseDouble(nuevoPrecioTextField.getText());
+    }
 
-            int filasAfectadas = preparedStatement.executeUpdate();
+    public String getDescripcionActualizada() {
+        return nuevaDescripcionTextField.getText();
+    }
 
-            // Cerrar la conexión
-            preparedStatement.close();
-            connection.close();
-
-            return filasAfectadas > 0; // Retorna true si al menos una fila fue afectada (éxito)
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return false; // Retorna false en caso de error
-        }
+    public String getCategoriaActualizada() {
+        return nuevaCategoriaTextField.getText();
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Interfaz_Actualizar_Objeto();
-            }
+        SwingUtilities.invokeLater(() -> {
+            Producto producto = new Producto("1", "Producto 1", "imagen_producto1.jpg", "Descripción del producto 1", "Electrónica", 29.99);
+            new Interfaz_Actualizar_Objeto(producto);
         });
     }
 }
