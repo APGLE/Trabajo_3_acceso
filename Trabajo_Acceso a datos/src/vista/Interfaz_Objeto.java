@@ -22,10 +22,11 @@ public class Interfaz_Objeto extends JFrame {
 
         // Crear un panel para el contenido
         JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new BorderLayout());
+        contentPanel.setBounds(0, 0, 386, 263);
 
         // Panel para la imagen
         JPanel imagenPanel = new JPanel();
+        imagenPanel.setBounds(0, 0, 200, 263);
         imagenPanel.setPreferredSize(new Dimension(200, 200));
         imagenPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -38,26 +39,37 @@ public class Interfaz_Objeto extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        getContentPane().setLayout(null);
 
         imagenPanel.add(imagenLabel);
 
         // Panel para la descripción, nombre y categoría
         JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new BorderLayout());
+        infoPanel.setBounds(200, 0, 186, 263);
 
         JLabel nombreLabel = new JLabel("Nombre: " + nombre);
+        nombreLabel.setBounds(0, 0, 102, 13);
         JLabel precioLabel = new JLabel("Precio: " + precio);
+        precioLabel.setBounds(136, 0, 50, 13);
         JLabel descripcionLabel = new JLabel("Descripción: " + descripcion);
+        descripcionLabel.setBounds(0, 13, 186, 184);
         JLabel categoriaLabel = new JLabel("Categoría: " + categoria);
+        categoriaLabel.setBounds(0, 207, 113, 13);
+        infoPanel.setLayout(null);
 
-        infoPanel.add(nombreLabel, BorderLayout.NORTH);
-        infoPanel.add(precioLabel, BorderLayout.EAST);
-        infoPanel.add(descripcionLabel, BorderLayout.CENTER);
-        infoPanel.add(categoriaLabel, BorderLayout.SOUTH);
+        infoPanel.add(nombreLabel);
+        infoPanel.add(precioLabel);
+        infoPanel.add(descripcionLabel);
+        infoPanel.add(categoriaLabel);
+        contentPanel.setLayout(null);
 
         // Agregar elementos al panel de contenido
-        contentPanel.add(imagenPanel, BorderLayout.WEST);
-        contentPanel.add(infoPanel, BorderLayout.CENTER);
+        contentPanel.add(imagenPanel);
+        contentPanel.add(infoPanel);
+        
+        JButton botonactualizar = new JButton("Actualizar informacion");
+        botonactualizar.setBounds(51, 242, 135, 21);
+        infoPanel.add(botonactualizar);
 
         // Agregar el panel de contenido a la ventana
         getContentPane().add(contentPanel);
