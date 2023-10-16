@@ -22,34 +22,34 @@ public class Controlador {
 	public void registrarProducto(String nombre, String descripcion, float precio_unitario, String categoria, String imagen) {
 
 		Producto document = new Producto();
-		modelo.createDoc(document);
+		//modelo.createDoc(document);
 		actualizarTabla();
 
 	}
 
 	public void actualizarProducto(String nombre, String descripcion, float precio_unitario, String categoria, String imagen) {
-		vista.datoIntroducido(document);
+		//vista.datoIntroducido(document);
 
 	}
 	
 	public void actualizarTabla() {
 		
-		ArrayList<Producto> datos = (ArrayList<Producto>) modelo.readAllDocsAndData();
-		vista.mostrarDatos(datos);
+		//ArrayList<Producto> datos = (ArrayList<Producto>) modelo.readAllDocsAndData();
+		//vista.mostrarDatos(datos);
 		
 	}
 
 	public void borrarProducto(String id, String rev) {
 		
 		Producto p = new Producto(); 
-		modelo.deleteDoc(p);
+		//modelo.deleteDoc(p);
 		actualizarTabla();
 		
 	}
 
 	public  Producto recuperarCoche(String id) {
 		
-		return modelo.readDoc(id);
+		return null;
 				
 	}
 }
