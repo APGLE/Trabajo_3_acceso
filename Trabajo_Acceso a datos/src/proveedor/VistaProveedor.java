@@ -1,6 +1,7 @@
 package proveedor;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -9,12 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class VistaProveedor extends JFrame {
+public class VistaProveedor {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JFrame datos;
+	private JFrame formulario;
 	private DefaultTableModel dtmConsulta;
 	private JTextField cifTextField;
 	private JTextField nombreTextField;
@@ -27,15 +29,19 @@ public class VistaProveedor extends JFrame {
     private JButton btnSalir;
 	private ControladorProveedor controladorProveedor;
 	private Object proveedorSeleccionado;
-	private Window formulario;
+	//private Window formulario;
+	private JTable tablaProveedores;
+	private JPanel panelProveedores;
+	private DefaultTableModel dmt;
+	private JScrollPane jspProveedores;
 
     public VistaProveedor() {
         // Configurar la ventana de actualización de proveedor
     }    
             
-          
+       
       
-                 
+           
     
    
     public VistaProveedor(ControladorProveedor controlador) {
@@ -46,8 +52,22 @@ public class VistaProveedor extends JFrame {
 		datos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		datos.setLocationRelativeTo(null);
 		datos.getContentPane().setLayout(null);
+		datos.setVisible(true);
 		
-		setTitle("Proveedor");
+		panelProveedores = new JPanel();
+		panelProveedores.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		datos.setContentPane(panelProveedores);
+		panelProveedores.setLayout(null);
+		dmt = new DefaultTableModel();
+		
+		tablaProveedores = new JTable();
+		jspProveedores = new JScrollPane();
+		tablaProveedores.setBounds(0, 0, 375, 300);
+		jspProveedores.setBounds(0, 0, 341, 250);
+		panelProveedores.add(tablaProveedores);
+		
+		/*setTitle("Proveedor");
         setSize(700, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -214,14 +234,18 @@ public class VistaProveedor extends JFrame {
 			}
     private void inicializarComponentes() {
 		// TODO Auto-generated method stub
-		
+		*/
 	}
-	
+	/**
+	 * Lógica para actualizar el proveedor (debes implementar tu lógica real aquí)
+	 * Por ejemplo, podrías actualizar los datos en tu base de datos o sistema de proveedores.
+	 * @param nuevoNombreProveedor
+	 * @param nuevaDireccionProveedor
+	 */
 
     private void actualizarProveedor(String nuevoNombreProveedor, String nuevaDireccionProveedor) {
-        // Lógica para actualizar el proveedor (debes implementar tu lógica real aquí)
-        // Por ejemplo, podrías actualizar los datos en tu base de datos o sistema de proveedores.
-        JOptionPane.showMessageDialog(this, "Proveedor actualizado:\nNombre: " + nuevoNombreProveedor
+         
+        JOptionPane.showMessageDialog(formulario, "Proveedor actualizado:\nNombre: " + nuevoNombreProveedor
                 + "\nNueva Dirección: " + nuevaDireccionProveedor);
     }
     

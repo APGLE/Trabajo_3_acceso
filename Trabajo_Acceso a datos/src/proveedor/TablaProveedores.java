@@ -1,72 +1,114 @@
 package proveedor;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TablaProveedores extends JFrame {
 
+	private JFrame datos;
+	private JTable tablaProveedores;
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTable tabla;
+	private JPanel panelProveedor;
+	private static JTable tablaProveedor;
+	private DefaultTableModel dtmConsulta;
+	private JScrollPane jspProveedor;
+	private ControladorProveedor controladorProveedor;
 	DefaultTableModel mt;
 	JScrollPane s1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TablaProveedores frame = new TablaProveedores();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public TablaProveedores() {
+	
+	public TablaProveedores(ControladorProveedor controladorProveedor) {
+		this.controladorProveedor = controladorProveedor;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setBounds(100, 100, 500, 350);
+		panelProveedor = new JPanel();
+		panelProveedor.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setContentPane(panelProveedor);
+		panelProveedor.setLayout(null);
 		mt = new DefaultTableModel();
-		tabla = new JTable();
+		tablaProveedor = new JTable();
 		s1 = new JScrollPane();
-		tabla.setBounds(0, 0, 341, 250);
+		tablaProveedor.setBounds(0, 0, 375, 300);
 		s1.setBounds(0, 0, 341, 250);
-		contentPane.add(tabla);
+		panelProveedor.add(tablaProveedor);
 		
 		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(345, 11, 89, 23);
-		contentPane.add(btnActualizar);
+		btnActualizar.setBounds(385, 11, 89, 23);
+		panelProveedor.add(btnActualizar);
 		
 		JButton btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(345, 59, 89, 23);
-		contentPane.add(btnEliminar);
+		btnEliminar.setBounds(385, 45, 89, 23);
+		panelProveedor.add(btnEliminar);
 		
 		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(345, 227, 89, 23);
-		contentPane.add(btnSalir);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnSalir.setBounds(385, 277, 89, 23);
+		panelProveedor.add(btnSalir);
 		
 		//s1.setViewportView(tabla);
 		
-		String titulos[] = {"Cif","Nombre","Direccion","Telefono"};
-		mt.setColumnIdentifiers(titulos);
+		String columnas[] = {"Cif","Nombre","Direccion","Telefono"};
+		mt.setColumnIdentifiers(columnas);
 		
-		tabla = new JTable(mt);
+		tablaProveedor = new JTable(mt);
 	}
+	
+	public TablaProveedores() {
+		
+			
+	}
+
+	private void inicializarComponentes() {
+
+		panelProveedor = new JPanel();
+		panelProveedor.setLayout(null);
+		panelProveedor.setBounds(200, 0, 433, 463);
+
+		String[] columnas = new String[] { "Cif", "Nombre", "Direccion" , "Telefono"};
+		dtmConsulta = new DefaultTableModel(columnas, 0);
+		setTablaProveedor(new JTable(dtmConsulta));
+		getTablaProveedor().setPreferredScrollableViewportSize(new Dimension(250, 100));
+		getTablaProveedor().getTableHeader().setReorderingAllowed(true);
+		getTablaProveedor().setEnabled(true);
+
+		 
+		// Crear el ordenador de filas TableRowSorter<DefaultTableModel> sorter = new
+		// TableRowSorter<>(ComboCoche); getTablaCoches().setRowSorter(sorter);
+		// sorter.sort();
+
+		jspProveedor = new JScrollPane(getTablaProveedor());
+		jspProveedor.setBounds(5, 5, 450, 355);
+		datos.add(jspProveedor);
+
+	}
+	
+	public static JTable getTablaProveedor() {
+		return tablaProveedor;
+	}
+
+	public void setTablaProveedor(JTable tablaProveedor) {
+		TablaProveedores.tablaProveedor = tablaProveedor;
+	}
+
+	
+	private String [] nombresColumnas= {"Cif","Nombre","Direccion","Telefono"};
+	
+	private Object [] [] datosFila= {
+		
+			{"P123456","Juan Palomo","Pontevedra","+34678903345"},
+			{"P654321","Manolita Perez","Cuenca","+34655432190"}
+	};
+	
 }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class ControladorProveedor {
 
-	private VistaProveedor vista;
-	private ModeloProveedor modelo;
+	private VistaProveedor vistaProveedor;
+	private ModeloProveedor modeloProveedor;
 
 	
 	public ControladorProveedor() {
@@ -18,46 +18,47 @@ public class ControladorProveedor {
 	public void registrarProducto(String cif, String nombre, String direccion, String telefono) {
 
 		Proveedor document = new Proveedor("cif", "nombre", "direccion", "telefono");
-		modeloProveedor.createDoc(document);
+		//modeloProveedor.createDoc(document);
 		actualizarTabla();
 
 	}
 
-	public void actualizarProducto(String cif, String nombre, String direccion, String telefono) {
-		vista.datoIntroducido(document);
+	public void actualizarProveedor(String cif, String nombre, String direccion, String telefono) {
+		
+		//Proveedor proveedor = recuperarProveedor(cif);
+		//vistaProveedor.datoIntroducido(document);
 
 	}
 	
+	private Proveedor recuperarProveedor(String cif) {
+		
+		return null;
+		
+	}
+
 	public void actualizarTabla() {
 		
-		ArrayList<Proveedor> datos = (ArrayList<Proveedor>) modeloProveedor.readAllDocsAndData();
-		vista.mostrarDatos(datos);
+		//ArrayList<Proveedor> datos = (ArrayList<Proveedor>) modeloProveedor.readAllDocsAndData();
+		//vistaProveedor.mostrarDatos(datos);
 		
 	}
 
 	public void borrarProducto(String id, String rev) {
 		
-		Proveedor p = new Proveedor(cif); 
-		modelo.deleteDoc(p);
+		//Proveedor p = new Proveedor(cif); 
+		//modeloProveedor.deleteDoc(p);
 		actualizarTabla();
 		
 	}
 
-	public  Productos recuperarCoche(String id) {
-		
-		return modelo.readDoc(id);
-				
-	}
-
-	public void actualizarCoche(String id, String revision, String matricula, String marca, String modelo2, String km,
-			String color) {
-		Coche coche = recuperarCoche(id);
-		coche.setMarca(marca);
-		coche.setMatricula(matricula);
-		coche.setModelo(modelo2);
-		coche.setKm(km);
-		coche.setColor(color);
-		modelo.updateDoc(coche);
+	
+	public void actualizarCoche(String cif, String nombre, String direccion, String telefono) {
+		Proveedor proveedor = recuperarProveedor(cif);
+		proveedor.setCif(cif);
+		proveedor.setNombre(nombre);
+		proveedor.setDireccion(direccion);
+		//proveedor.setKm(telefono);
+		//modeloProveedor.updateDoc(proveedor);
 		actualizarTabla();
 		
 	}
@@ -65,6 +66,6 @@ public class ControladorProveedor {
 	public void crearProveedor(String cif, String nombre, String direccion, String telefono) {
 		// TODO Auto-generated method stub
 		
-	}*/
+	}
 
 }

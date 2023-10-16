@@ -6,6 +6,8 @@ import java.util.List;
 
 public class ModeloProveedor {
 	private Connection connection;
+	private ControladorProveedor controladorProveedor;
+	
 
 	public ModeloProveedor(ControladorProveedor controladorProveedor) {
 		super();
@@ -382,5 +384,7 @@ public class ModeloProveedor {
 
 		return "";
 	}
+
+	
 
 }
